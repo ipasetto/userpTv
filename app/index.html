@@ -4,6 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=1920, user-scalable=no">
 <title>Igor TV</title>
+<script>
+  /* 1rem = 1/100 da largura do palco 16:9, que cabe inteiro em qualquer tela */
+  (function () {
+    function fit() {
+      var s = Math.min(window.innerWidth / 100, window.innerHeight / 56.25);
+      document.documentElement.style.fontSize = s + "px";
+    }
+    fit(); window.addEventListener("resize", fit);
+  })();
+</script>
 <link rel="stylesheet" href="css/style.css">
 <script src="$WEBAPIS/webapis/webapis.js"></script>
 </head>
@@ -13,24 +23,23 @@
   <!-- INÍCIO -->
   <div class="view" id="home">
     <header class="top">
-      <div class="hello">
-        <span class="day" id="day"></span>
-        <h1 id="greet"></h1>
-      </div>
-      <div class="clock"><div class="time" id="time"></div></div>
+      <h1 class="hello" id="greet"></h1>
+      <div class="clock"><div class="time" id="time"></div><span class="day" id="day"></span></div>
     </header>
     <section class="fav">
-      <h2>Favoritos · de A a Z<span class="more" id="more"></span></h2>
+      <div class="favhead">
+        <h2>Favoritos · de A a Z<span class="more" id="more"></span></h2>
+        <div class="hint"><span class="key" data-i="left"></span><span class="key" data-i="up"></span><span class="key" data-i="down"></span><span class="key" data-i="right"></span><b>mover</b><span class="key">OK</span><b>abrir</b></div>
+      </div>
       <div class="grid" id="grid"></div>
     </section>
     <nav class="dock" id="dock"></nav>
-    <div class="hint top-hint"><span class="key">◀</span><span class="key">▲</span><span class="key">▼</span><span class="key">▶</span><b>mover</b><span class="key">OK</span><b>abrir</b></div>
   </div>
 
   <!-- TODOS OS APPS -->
   <div class="view" id="apps" hidden>
     <div class="ghead">
-      <h1><span class="back">◀ Voltar</span>Todos os apps</h1>
+      <h1><span class="back"><i data-i="back"></i>Voltar</span>Todos os apps</h1>
       <div class="hint"><span class="key">OK</span><b>abrir</b><span class="key">Voltar</span><b>início</b></div>
     </div>
     <div class="grid scroll" id="allgrid"></div>
@@ -39,8 +48,8 @@
   <!-- GUIA AO VIVO -->
   <div class="view" id="guide" hidden>
     <div class="ghead">
-      <h1><span class="back">◀ Voltar</span>TV ao vivo</h1>
-      <div class="hint"><span class="key">◀</span><span class="key">▶</span><b>tipo</b><span class="key">▲</span><span class="key">▼</span><b>canal</b><span class="key">OK</span><b>assistir</b><span class="key">1-9</span><b>número</b></div>
+      <h1><span class="back"><i data-i="back"></i>Voltar</span>TV ao vivo</h1>
+      <div class="hint"><span class="key" data-i="left"></span><span class="key" data-i="right"></span><b>tipo</b><span class="key" data-i="up"></span><span class="key" data-i="down"></span><b>canal</b><span class="key">OK</span><b>assistir</b><span class="key">1–9</span><b>número</b></div>
     </div>
     <div class="cats" id="cats"></div>
     <div class="gbody">
@@ -63,15 +72,15 @@
     <div class="banner" id="banner">
       <span class="num" id="w-num"></span>
       <div class="bt"><div class="nm" id="w-nm"></div><div class="c" id="w-c"></div></div>
-      <div class="hint"><span class="key">▲</span><span class="key">▼</span><b>trocar canal</b><span class="key">OK</span><b>lista</b><span class="key">Voltar</span><b>sair</b></div>
+      <div class="hint"><span class="key" data-i="up"></span><span class="key" data-i="down"></span><b>trocar canal</b><span class="key">OK</span><b>lista</b><span class="key">Voltar</span><b>sair</b></div>
     </div>
   </div>
 
   <!-- CONFIGURAÇÕES -->
   <div class="view" id="settings" hidden>
     <div class="ghead">
-      <h1><span class="back">◀ Voltar</span>Configurações</h1>
-      <div class="hint"><span class="key">OK</span><b>escolher</b><span class="key">Voltar</span><b>início</b></div>
+      <h1><span class="back"><i data-i="back"></i>Voltar</span>Configurações</h1>
+      <div class="hint"><span class="key" data-i="up"></span><span class="key" data-i="down"></span><b>escolher</b><span class="key">OK</span><b>abrir</b><span class="key">Voltar</span><b>início</b></div>
     </div>
     <div class="cols">
       <div class="menu" id="setmenu"></div>
@@ -82,16 +91,16 @@
   <!-- AJUDA -->
   <div class="view" id="help" hidden>
     <div class="ghead">
-      <h1><span class="back">◀ Voltar</span>Ajuda</h1>
+      <h1><span class="back"><i data-i="back"></i>Voltar</span>Ajuda</h1>
       <div class="hint"><span class="key">Voltar</span><b>início</b></div>
     </div>
     <div class="helpgrid">
-      <div class="hcard"><span class="key big">◀ ▲ ▼ ▶</span><p>As setas movem o quadro amarelo. Ele mostra o que está escolhido.</p></div>
-      <div class="hcard"><span class="key big">OK</span><p>O botão do meio abre o que está em amarelo.</p></div>
-      <div class="hcard"><span class="key big">Voltar</span><p>Volta para a tela anterior. Na TV ao vivo, sai do canal.</p></div>
-      <div class="hcard"><span class="key big">1 2 3</span><p>Na TV ao vivo, digite o número do canal para ir direto.</p></div>
-      <div class="hcard"><span class="key big">Casinha</span><p>Abre o menu da Samsung. Para voltar aqui, escolha “Igor TV”.</p></div>
-      <div class="hcard"><span class="key big">YouTube</span><p>O botão YouTube abre a versão sem anúncios. Ela demora uns segundos a mais para abrir.</p></div>
+      <div class="hcard"><div class="keys"><span class="key big" data-i="left"></span><span class="key big" data-i="up"></span><span class="key big" data-i="down"></span><span class="key big" data-i="right"></span></div><p>As setas movem o quadro amarelo. Ele mostra o que está escolhido.</p></div>
+      <div class="hcard"><div class="keys"><span class="key big">OK</span></div><p>O botão do meio abre o que está em amarelo.</p></div>
+      <div class="hcard"><div class="keys"><span class="key big">Voltar</span></div><p>Volta para a tela anterior. Na TV ao vivo, sai do canal.</p></div>
+      <div class="hcard"><div class="keys"><span class="key big">1</span><span class="key big">2</span><span class="key big">3</span></div><p>Na TV ao vivo, digite o número do canal para ir direto.</p></div>
+      <div class="hcard"><div class="keys"><span class="key big" data-i="home"></span></div><p>A casinha abre o menu da Samsung. Para voltar aqui, escolha “Igor TV”.</p></div>
+      <div class="hcard"><div class="keys"><span class="key big">CH</span><span class="key big" data-i="up"></span><span class="key big" data-i="down"></span></div><p>Os botões de canal trocam a TV ao vivo de qualquer tela.</p></div>
     </div>
   </div>
 

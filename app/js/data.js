@@ -14,7 +14,7 @@ var IGORTV = {
     { n: "Prime Video",  match: ["prime video", "amazon"], bg: "linear-gradient(135deg,#0f2a44,#1b5e8f)" },
     { n: "Globoplay",    match: ["globoplay"],             bg: "linear-gradient(135deg,#b3241c,#a8460c)" },
     { n: "Disney+",      match: ["disney"],                bg: "linear-gradient(135deg,#0b1d5c,#1a3fa8)" },
-    { n: "Max",          match: ["max", "hbo"],            bg: "linear-gradient(135deg,#1630c9,#5a1bd1)", exato: true },
+    { n: "Max",          match: ["max", "hbo"],            bg: "linear-gradient(135deg,#0a1f8f,#0b3fd6)", exato: true },
     { n: "Spotify",      match: ["spotify"],               bg: "linear-gradient(135deg,#0f3d22,#1a8f43)" },
     { n: "YouTube Kids", match: ["youtube kids"],          bg: "linear-gradient(135deg,#a3121a,#a85a0e)" },
     { n: "Apple TV",     match: ["apple tv"],              bg: "linear-gradient(135deg,#1c1c1e,#3a3a3c)" },
@@ -32,7 +32,7 @@ var IGORTV = {
   canais: [
     { n: "TV Brasil",   c: "Abertos",  url: "https://tvbrasil-stream.ebc.com.br/index.m3u8", bg: "linear-gradient(135deg,#0a3a5a,#1270a8)" },
     { n: "TV Cultura",  c: "Abertos",  url: "https://player-tvcultura.stream.uol.com.br/live/tvcultura.m3u8", bg: "linear-gradient(135deg,#0d4a3a,#16806a)" },
-    { n: "Rede Minas",  c: "Abertos",  url: "https://8hzcavccys.zoeweb.tv/redeminas/ngrp:redeminas_all/playlist.m3u8", bg: "linear-gradient(135deg,#4a1a5a,#8a2aa0)" },
+    { n: "Rede Minas",  c: "Abertos",  url: "https://8hzcavccys.zoeweb.tv/redeminas/ngrp:redeminas_all/playlist.m3u8", bg: "linear-gradient(135deg,#6a1a10,#b8441a)" },
     { n: "CNN Brasil",  c: "Notícias", url: "https://d25usgadhphvwi.cloudfront.net/hls/main.m3u8", bg: "linear-gradient(135deg,#3a0a0a,#a01818)" },
     { n: "Record News", c: "Notícias", url: "https://rnw-rn.otteravision.com/rnw/rn/rnw_rn.m3u8", bg: "linear-gradient(135deg,#4a0a1a,#8a1a2a)" },
     { n: "TV Câmara",   c: "Públicos", url: "https://stream3.camara.gov.br/tv1/manifest.m3u8", bg: "linear-gradient(135deg,#0a3a2a,#13804f)" }

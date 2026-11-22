@@ -120,6 +120,7 @@
   function show(v) {
     view = v;
     each(["home", "apps", "guide", "watch", "settings", "help"], function (x) { $(x).hidden = x !== v; });
+    if (v === "watch") document.documentElement.classList.add("watching"); else document.documentElement.classList.remove("watching");
   }
 
   /* ---------------- grade adaptável ---------------- */
@@ -138,7 +139,7 @@
   function fillGrid(box, list, s, rowH) {
     box.innerHTML = "";
     box.className = "grid" + (s.compact ? " compact" : "") + (s.scroll ? " scroll" : "");
-    box.style.setProperty("--mark", s.mark + "vw");
+    box.style.setProperty("--mark", s.mark + "rem");
     var rows = Math.ceil(list.length / s.cols);
     var out = [];
     each(list, function (a) {
@@ -163,6 +164,18 @@
     gear: '<circle cx="12" cy="12" r="3"/><path d="M12 2.8v2.4M12 18.8v2.4M4.2 7.5l2.1 1.2M17.7 15.3l2.1 1.2M4.2 16.5l2.1-1.2M17.7 8.7l2.1-1.2"/><circle cx="12" cy="12" r="7"/>',
     help: '<circle cx="12" cy="12" r="9"/><path d="M9.6 9.3a2.5 2.5 0 1 1 3.4 2.3c-.7.3-1 .8-1 1.5v.4M12 17h.01"/>'
   };
+  /* setas e ícones das dicas: desenhados em SVG, mesmo traço dos ícones da barra */
+  var KEYI = {
+    left: '<path d="M15 5l-7 7 7 7"/>', right: '<path d="M9 5l7 7-7 7"/>',
+    up: '<path d="M5 15l7-7 7 7"/>', down: '<path d="M5 9l7 7 7-7"/>',
+    back: '<path d="M15 5l-7 7 7 7"/>',
+    home: '<path d="M4 11l8-7 8 7"/><path d="M6 10v9h12v-9"/>'
+  };
+  each(document.querySelectorAll("[data-i]"), function (el) {
+    var p = KEYI[el.getAttribute("data-i")];
+    if (p) el.outerHTML = el.tagName === "I" ? '<svg viewBox="0 0 24 24">' + p + "</svg>" :
+      el.outerHTML.replace("></span>", '><svg viewBox="0 0 24 24">' + p + "</svg></span>");
+  });
   var FNS = [["tv", "TV ao vivo"], ["hdmi", "Entradas HDMI"], ["grid", "Todos os apps"], ["gear", "Configurações"], ["help", "Ajuda"]];
   each(FNS, function (f) {
     var b = document.createElement("div"); b.className = "fn"; b._fn = f[1];
@@ -180,7 +193,7 @@
     favs.sort(function (a, b) { return a.n.localeCompare(b.n, "pt-BR"); });
     var s = shape(favs.length);
     $("more").textContent = s.scroll ? "· " + favs.length + " apps, role para ver todos" : "";
-    var tiles = fillGrid($("grid"), favs, s, "9vw");
+    var tiles = fillGrid($("grid"), favs, s, "9rem");
     var all = tiles.concat(Array.prototype.slice.call($("dock").children));
     wire(all, function (el) {
       homeFocus = cur;
@@ -194,7 +207,7 @@
   }
 
   /* ---------------- TODOS OS APPS ---------------- */
-  var PALETA = ["#1b4f8f", "#7a2a8a", "#1a7a5a", "#8a3a14", "#2a3a8a", "#8a1a3a", "#3a6a1a", "#5a4a14"];
+  var PALETA = ["#1b4f8f", "#1a5a6a", "#1a7a5a", "#8a3a14", "#2a3a8a", "#8a1a3a", "#3a6a1a", "#5a4a14"];
   function enterApps() {
     show("apps");
     var list = installed.slice().sort(function (a, b) { return a.name.localeCompare(b.name, "pt-BR"); });
@@ -203,7 +216,7 @@
       var c = PALETA[i % PALETA.length];
       tiles.push({ n: a.name, id: a.id, bg: "linear-gradient(135deg," + c + ",#172231)" });
     });
-    var els = fillGrid($("allgrid"), tiles, { cols: 4, mark: 2, compact: true, scroll: true }, "8.6vw");
+    var els = fillGrid($("allgrid"), tiles, { cols: 4, mark: 2, compact: true, scroll: true }, "8.6rem");
     wire(els, function (el) { launch(el._app.id, el._app.n); });
   }
 
@@ -281,7 +294,8 @@
       $("vid").hidden = true; $("av").style.display = "block";
       try {
         AV.open(url);
-        AV.setDisplayRect(0, 0, 1920, 1080);
+        var r = $("tv").getBoundingClientRect(), k = 1920 / window.innerWidth;
+        AV.setDisplayRect(Math.round(r.left * k), Math.round(r.top * k), Math.round(r.width * k), Math.round(r.height * k));
         AV.setListener({
           onbufferingcomplete: function () { $("w-load").hidden = true; },
           onerror: function () { $("w-load").hidden = false; $("w-load").textContent = "Este canal não abriu agora. Use ▲ ▼ para trocar."; }
