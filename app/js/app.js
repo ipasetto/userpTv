@@ -44,7 +44,7 @@
   function loadApps(cb) {
     if (!NA_TV) {
       installed = [
-        { id: "n", name: "Netflix" }, { id: "p", name: "Prime Video" }, { id: "g", name: "Globoplay" },
+        { id: "n", name: "Netflix", icon: "icon.png" }, { id: "p", name: "Prime Video" }, { id: "g", name: "Globoplay" },
         { id: "d", name: "Disney+" }, { id: "m", name: "Max" }, { id: "s", name: "Spotify" },
         { id: "yk", name: "YouTube Kids" }, { id: D.youtubeSemAnuncios, name: "TizenBrew" },
         { id: "y", name: "YouTube" }, { id: "b", name: "Navegador" }, { id: "gal", name: "Gallery" }
@@ -111,11 +111,11 @@
   }
   function present(a) {
     if (a.id !== D.youtubeSemAnuncios && low(a.name) === "youtube")
-      return { n: "YouTube original", sub: "com anúncios", bg: "linear-gradient(135deg,#2a1414,#6a1a1a)", id: a.id };
+      return { n: "YouTube original", sub: "com anúncios", bg: "linear-gradient(135deg,#2a1414,#6a1a1a)", id: a.id, icon: a.icon };
     var def = matchDef(a);
-    if (def) return { n: def.n, bg: def.bg, fg: def.fg, sub: def.sub, id: a.id };
+    if (def) return { n: def.n, bg: def.bg, fg: def.fg, sub: def.sub, id: a.id, icon: a.icon };
     var c = PALETA[hash(a.id) % PALETA.length];
-    return { n: a.name, bg: "linear-gradient(135deg," + c + ",#172231)", id: a.id };
+    return { n: a.name, bg: "linear-gradient(135deg," + c + ",#172231)", id: a.id, icon: a.icon };
   }
 
   /* Favoritos escolhidos pelo usuário, guardados na TV. Na primeira vez, usa os conhecidos que estiverem instalados. */
@@ -212,7 +212,9 @@
   function tileHTML(a) {
     var sub = a.sub ? '<span class="sub">' + a.sub + "</span>" : "";
     var tag = a.sub ? '<span class="tag">' + a.sub + "</span>" : "";
-    return '<span class="mark">' + a.n + sub + '</span><span class="name"><span class="t">' + a.n + tag +
+    var ico = a.icon ? '<img class="logo" alt="" src="' + a.icon + '" onerror="this.parentNode.removeChild(this)">' : "";
+    var icoS = a.icon ? '<img class="logo-s" alt="" src="' + a.icon + '" onerror="this.parentNode.removeChild(this)">' : "";
+    return '<span class="mark">' + ico + a.n + sub + '</span><span class="name">' + icoS + '<span class="t">' + a.n + tag +
       '</span><span class="letter">' + a.n.charAt(0) + '</span><span class="okt">OK para abrir</span></span>';
   }
   function fillGrid(box, list, s, rowH) {
@@ -308,9 +310,41 @@
   }
 
   /* ---------------- TV AO VIVO ---------------- */
-  var CATS = ["Todos", "Abertos", "Notícias", "Públicos"];
+  var CATS = ["Todos"];
   var canais = [], catIdx = 0, lastCh = 1, checked = false;
   try { lastCh = +localStorage.getItem("ultimoCanal") || 1; } catch (e) {}
+  /* Lista de canais: lê canais.json do GitHub (dá para editar lá sem reinstalar o app).
+     Sem internet ou com erro, usa a última lista que deu certo; sem ela, a lista que veio no app. */
+  var CANAIS_KEY = "igortv.canais";
+  function validList(l) {
+    if (!l || !l.length) return false;
+    for (var i = 0; i < l.length; i++) if (!l[i] || !l[i].n || !l[i].url || !l[i].c) return false;
+    return true;
+  }
+  function loadChannelList(cb) {
+    var done = false;
+    function fin(list, fonte) {
+      if (done) return; done = true;
+      if (validList(list)) { D.canais = list; D.fonteCanais = fonte; }
+      else {
+        try { var c = JSON.parse(localStorage.getItem(CANAIS_KEY)); if (validList(c)) { D.canais = c; D.fonteCanais = "guardada"; } } catch (e) {}
+        if (!D.fonteCanais) D.fonteCanais = "do app";
+      }
+      cb();
+    }
+    if (!D.canaisURL) return fin(null);
+    var x = new XMLHttpRequest();
+    x.open("GET", D.canaisURL + "?t=" + Date.now(), true); x.timeout = 6000;
+    x.onload = function () {
+      try {
+        var l = JSON.parse(x.responseText).canais;
+        if (x.status === 200 && validList(l)) { try { localStorage.setItem(CANAIS_KEY, JSON.stringify(l)); } catch (e) {} return fin(l, "GitHub"); }
+      } catch (e) {}
+      fin(null);
+    };
+    x.onerror = x.ontimeout = function () { fin(null); };
+    try { x.send(); } catch (e) { fin(null); }
+  }
   function checkChannels(cb) {
     var pend = D.canais.length, ok = [];
     each(D.canais, function (ch, i) {
@@ -353,9 +387,13 @@
        (ch.n === "Globo" ? " e entre com uma Conta Globo gratuita." : "."));
   }
   function byNum(n) { var r = null; each(canais, function (c) { if (c.num === n) r = c; }); return r; }
-  each(CATS, function (c) {
-    var b = document.createElement("div"); b.className = "cat"; b.textContent = c; $("cats").appendChild(b);
-  });
+  function buildCats() {
+    CATS = ["Todos"];
+    each(canais, function (c) { if (CATS.indexOf(c.c) < 0) CATS.push(c.c); });
+    if (catIdx >= CATS.length) catIdx = 0;
+    var box = $("cats"); box.innerHTML = "";
+    each(CATS, function (c) { var b = document.createElement("div"); b.className = "cat"; b.textContent = c; box.appendChild(b); });
+  }
   /* Prévia: espera o foco parar por um instante e toca o canal dentro do painel da esquerda. */
   var previewT;
   function showPreview(ch) {
@@ -516,7 +554,7 @@
   function enterSettings() {
     show("settings");
     PANELS.sobre = "<h2>Sobre o Igor TV</h2><p>Versão " + D.versao + "</p><p>" + installed.length +
-      " apps instalados encontrados.</p><p>" + (checked ? canais.length + " canais ao vivo funcionando." : "Canais ainda não verificados.") + "</p>";
+      " apps instalados encontrados.</p><p>" + (checked ? canais.length + " canais ao vivo funcionando." : "Canais ainda não verificados.") + "</p><p>Lista de canais: " + (D.fonteCanais || "do app") + ".</p>";
     var opts = [
       ["instalar", "Modo instalação", "Para instalar ou atualizar pelo PC"],
       ["tv", "Ajustes da TV", "Como chegar no menu da Samsung"],
@@ -592,5 +630,5 @@
   tick(); setInterval(tick, 15000);
 
   loadApps(enterHome);
-  checkChannels(function () { if (view === "guide") fillList(lastCh); });
+  loadChannelList(function () { checkChannels(function () { buildCats(); if (view === "guide") fillList(lastCh); }); });
 })();

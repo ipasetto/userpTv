@@ -1,6 +1,6 @@
 /* Igor TV — dados editáveis. */
 var IGORTV = {
-  versao: "1.0.0",
+  versao: "1.2.0",
   ipDoPC: "192.168.1.53",
 
   /* App que abre no botão YouTube: o TizenBrew, que carrega o TizenTube (sem anúncios). */
@@ -26,6 +26,10 @@ var IGORTV = {
     { n: "Telecine",     match: ["telecine"],              bg: "linear-gradient(135deg,#5a0a1e,#a3123a)" },
     { n: "Samsung TV Plus", match: ["samsung tv plus"],    bg: "linear-gradient(135deg,#0a2a5a,#1a5ab0)" }
   ],
+
+  /* Lista de canais editável no GitHub: o app lê este arquivo ao abrir (sem precisar reinstalar).
+     Se não conseguir, usa a última lista boa ou a lista abaixo. */
+  canaisURL: "https://raw.githubusercontent.com/ipasetto/userpTv/main/canais.json",
 
   /* Canais ao vivo: só transmissões oficiais e gratuitas das emissoras.
      Testados em 22/11/2026. O app testa de novo ao abrir e esconde os que estiverem fora do ar. */

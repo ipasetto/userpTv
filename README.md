@@ -1,4 +1,4 @@
-# Igor TV
+# Igor TV (userpTv)
 
 Tela inicial personalizada para a TV Samsung UN40NU7100 (2018, Tizen 4).
 
@@ -12,6 +12,10 @@ Tela inicial personalizada para a TV Samsung UN40NU7100 (2018, Tizen 4).
 1. Na TV: Apps → `12345` → Host PC IP = IP do PC → reiniciar.
 2. No PC: clique em `instalar-na-tv.bat`.
 3. Na TV: volte o Host PC IP para `127.0.0.1` e reinicie (necessário para o TizenBrew).
+
+## Como adicionar ou trocar canais
+
+Edite `canais.json` aqui no GitHub (cada canal: `n` nome, `c` tipo, `url` endereço `.m3u8`, `bg` cor). O app lê esse arquivo toda vez que abre, então não precisa reinstalar. Use só transmissões oficiais e gratuitas.
 
 ## Estrutura
 
