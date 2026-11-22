@@ -1,6 +1,5 @@
 {
   "comoEditar": "Cada site vira um botão nos favoritos do userP TV e abre no navegador da TV. Campos: n = nome do botão, url = endereço completo (começando com https://), bg = cor do botão (opcional, ex.: #1b4f8f), icone = endereço de uma imagem quadrada (opcional). Exemplo: {\"n\": \"Meu site\", \"url\": \"https://exemplo.com\", \"bg\": \"#1b4f8f\"}. Separe os sites com vírgula. O app lê este arquivo toda vez que abre.",
-  "atalhos": []
+  "atalhos": [{"n": "PFLIX", "url": "https://pirataflix-seven.vercel.app/web/", "bg": "#1b4f8f"}]
 
-{"n": "PFLIX", "url": "https://pirataflix-seven.vercel.app/web/", "bg": "#1b4f8f"}
 }
