@@ -38,15 +38,8 @@ var IGORTV = {
     { n: "TV Câmara",   c: "Públicos", url: "https://stream3.camara.gov.br/tv1/manifest.m3u8", bg: "linear-gradient(135deg,#0a3a2a,#13804f)" }
   ],
 
-  /* Canais abertos que só passam pelo app oficial da emissora (grátis, alguns pedem cadastro).
-     Aparecem no guia em "Pelo app"; OK abre o app, ou explica como instalar. */
-  canaisApp: [
-    { n: "Globo",  app: "Globoplay",  match: ["globoplay"],                bg: "linear-gradient(135deg,#0a2a6a,#1a5ad0)" },
-    { n: "SBT",    app: "+SBT",       match: ["+sbt", "sbt"],              bg: "linear-gradient(135deg,#0a3a6a,#c8a012)" },
-    { n: "Band",   app: "Bandplay",   match: ["bandplay", "band"],         bg: "linear-gradient(135deg,#3a1a0a,#b0400a)" },
-    { n: "Record", app: "RecordPlus", match: ["recordplus", "playplus"],   bg: "linear-gradient(135deg,#0a1a4a,#1a3aa0)" },
-    { n: "Samsung TV Plus", app: "Samsung TV Plus", match: ["samsung tv plus", "tv plus"], bg: "linear-gradient(135deg,#0a2a5a,#1a5ab0)" }
-  ],
+  /* Canais que dependem de app da emissora foram retirados a pedido do dono (22/11/2026). */
+  canaisApp: [],
 
   /* Apps da Samsung tentados pelos botões (o primeiro que existir abre). */
   /* conferido na TV em 22/11/2026: o app de TV/HDMI existe; os Ajustes da Samsung não podem ser abertos por outro app */

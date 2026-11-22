@@ -42,14 +42,14 @@ h1.hello{margin:0;font-family:var(--display);font-weight:300;font-size:3.4rem;li
 .grid.scroll::-webkit-scrollbar{display:none}
 .cell{padding:.8rem}
 .app{position:relative;width:100%;height:100%;border-radius:1.4rem;overflow:hidden;color:#fff;background:var(--bg);
-  display:flex;flex-direction:column;justify-content:space-between;-webkit-transition:-webkit-transform .18s,box-shadow .18s;transition:transform .18s,box-shadow .18s;-webkit-filter:saturate(.8);filter:saturate(.8)}
+  display:flex;flex-direction:column;justify-content:space-between;-webkit-transition:-webkit-transform .18s,box-shadow .18s;transition:transform .18s,box-shadow .18s}
 .app .mark{padding:1.4rem 1.6rem 0;font-family:var(--display);font-weight:600;font-size:var(--mark);letter-spacing:-.01em;line-height:1;color:var(--fg)}
 .app .sub{display:block;font-family:var(--text);font-weight:700;font-size:1.05rem;opacity:.9;margin-top:.5rem;letter-spacing:0}
 .app .name{display:flex;align-items:center;justify-content:space-between;padding:.9rem 1.6rem;background:rgba(0,0,0,.42);font-size:1.7rem;font-weight:700}
 .app .tag{display:none}
 .app .letter{font-size:1.1rem;font-weight:700;opacity:.8;border:.12rem solid currentColor;border-radius:.5rem;padding:.1rem .5rem}
 .app .okt{display:none;font-size:1.1rem;font-weight:700;white-space:nowrap}
-.app.on{-webkit-transform:scale(1.06);transform:scale(1.06);-webkit-filter:none;filter:none;z-index:2;box-shadow:0 0 0 .45rem var(--amber),0 1.6rem 3rem rgba(0,0,0,.55)}
+.app.on{-webkit-transform:scale(1.06);transform:scale(1.06);z-index:2;box-shadow:0 0 0 .45rem var(--amber),0 1.6rem 3rem rgba(0,0,0,.55)}
 .app.on .name{background:var(--amber);color:var(--amber-ink)}
 .app.on .letter{display:none}
 .app.on .okt{display:inline}

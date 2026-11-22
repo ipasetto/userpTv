@@ -308,7 +308,7 @@
   }
 
   /* ---------------- TV AO VIVO ---------------- */
-  var CATS = ["Todos", "Abertos", "Notícias", "Públicos", "Pelo app"];
+  var CATS = ["Todos", "Abertos", "Notícias", "Públicos"];
   var canais = [], catIdx = 0, lastCh = 1, checked = false;
   try { lastCh = +localStorage.getItem("ultimoCanal") || 1; } catch (e) {}
   function checkChannels(cb) {
