@@ -621,11 +621,71 @@ function igortvIco(img) {
     tv: "<h2>Ajustes da TV</h2><p>Imagem, som, rede e atualização ficam no menu da Samsung.</p><ol><li>Aperte a <b>casinha</b> do controle.</li><li>Vá até a <b>engrenagem</b> (Configurações), no canto esquerdo.</li><li>Para voltar aqui, aperte a casinha e escolha <b>Igor TV</b>.</li></ol>",
     sobre: ""
   };
+  /* ---------- atualizar o Igor TV pelo TizenBrew Installer ---------- */
+  var ultimaVersao = null;
+  function checkUpdate(cb) {
+    var x = new XMLHttpRequest();
+    x.open("GET", "https://api.github.com/repos/" + D.repo + "/releases/latest", true); x.timeout = 6000;
+    x.onload = function () { try { ultimaVersao = String(JSON.parse(x.responseText).tag_name || "").replace(/^v/, ""); } catch (e) {} cb(); };
+    x.onerror = x.ontimeout = function () { cb(); };
+    try { x.send(); } catch (e) { cb(); }
+  }
+  function updatePanel(msg) {
+    var temNova = ultimaVersao && ultimaVersao !== D.versao;
+    return "<h2>Atualizar o Igor TV</h2><p>Instalada: <b>" + D.versao + "</b> · No GitHub: <b>" + (ultimaVersao || "não verificada") + "</b></p>" +
+      "<p>" + (msg || (temNova ? "Tem versão nova. Aperte OK para atualizar." : "Aperte OK para reinstalar a versão do GitHub.")) + "</p>" +
+      "<p>O Igor TV fecha durante a instalação. Quando terminar, abra o Igor TV de novo.</p>";
+  }
+  var STATUS = {
+    "installStatus.fetching": "Baixando do GitHub…", "installStatus.parsing": "Conferindo o pacote…",
+    "installStatus.resigning": "Preparando o pacote…", "installStatus.installing": "Instalando… o Igor TV vai fechar.",
+    "installStatus.installed": "Instalado! Abra o Igor TV de novo.",
+    "errors.debuggingNotEnabled": "Não deu: o modo desenvolvedor precisa estar com o IP 127.0.0.1."
+  };
+  function setUpd(msg) { if (view === "settings") $("setpanel").innerHTML = updatePanel(msg); }
+  function runUpdate(tentativa) {
+    tentativa = tentativa || 1;
+    if (!NA_TV) return setUpd("No navegador do PC não dá para atualizar; isso só funciona na TV.");
+    setUpd("Conectando ao instalador…");
+    var ws;
+    try { ws = new WebSocket("ws://127.0.0.1:8091"); } catch (e) { return semServico(tentativa); }
+    var abriu = false;
+    /* O serviço recém-ligado ignora pedidos em silêncio até conferir o IP; espera um pouco e reenvia se nada responder. */
+    var respondeu = false, envios = 0;
+    function enviar() {
+      if (respondeu || envios >= 3) { if (!respondeu) setUpd("O instalador não respondeu. Abra o TizenBrew Installer e tente por lá."); return; }
+      envios++;
+      try { ws.send(JSON.stringify({ type: 1, payload: { url: D.repo } })); } catch (e) {}
+      setTimeout(enviar, 6000);
+    }
+    ws.onopen = function () { abriu = true; setUpd("Conectado. Pedindo a versão nova…"); setTimeout(enviar, 1500); };
+    ws.onmessage = function (m) {
+      respondeu = true;
+      var d; try { d = JSON.parse(m.data); } catch (e) { return; }
+      if (d.type === 4 || d.type === 3) setUpd(STATUS[d.payload] || String(d.payload));
+      if (d.type === 1 && d.payload && d.payload.response === 2) setUpd("O instalador pediu um certificado da Samsung. Abra o TizenBrew Installer para concluir.");
+    };
+    ws.onerror = function () { if (!abriu) semServico(tentativa); };
+  }
+  /* O serviço do instalador não estava rodando: liga ele (mesmo comando que o Installer usa) e tenta de novo. */
+  function semServico(tentativa) {
+    if (tentativa >= 3) {
+      setUpd("Não consegui ligar o instalador. Abrindo o TizenBrew Installer: depois volte aqui e aperte OK de novo.");
+      return setTimeout(function () { launch(D.instaladorApp, "o TizenBrew Installer"); }, 2500);
+    }
+    setUpd("Ligando o instalador…");
+    try {
+      tizen.application.launchAppControl(new tizen.ApplicationControl("http://tizen.org/appcontrol/operation/service"), D.instaladorServico,
+        function () { setTimeout(function () { runUpdate(tentativa + 1); }, 2500); },
+        function () { runUpdate(3); });
+    } catch (e) { runUpdate(3); }
+  }
   function enterSettings() {
     show("settings");
     PANELS.sobre = "<h2>Sobre o Igor TV</h2><p>Versão " + D.versao + "</p><p>" + installed.length +
       " apps instalados encontrados.</p><p>" + (checked ? canais.length + " canais ao vivo funcionando." : "Canais ainda não verificados.") + "</p><p>Lista de canais: " + (D.fonteCanais || "do app") + ".</p>";
     var opts = [
+      ["atualizar", "Atualizar o Igor TV", "Baixa a versão nova do GitHub"],
       ["instalar", "Modo instalação", "Para instalar ou atualizar pelo PC"],
       ["tv", "Ajustes da TV", "Como chegar no menu da Samsung"],
       ["sobre", "Sobre o Igor TV", "Versão e informações"]
@@ -635,10 +695,11 @@ function igortvIco(img) {
     each(opts, function (o) {
       var b = document.createElement("div"); b.className = "opt"; b._k = o[0];
       b.innerHTML = o[1] + "<small>" + o[2] + "</small>";
-      b.onfocusin2 = function () { $("setpanel").innerHTML = PANELS[o[0]]; };
+      b.onfocusin2 = function () { $("setpanel").innerHTML = o[0] === "atualizar" ? updatePanel() : PANELS[o[0]]; };
       box.appendChild(b); els.push(b);
     });
-    wire(els, function () {});
+    wire(els, function (el) { if (el._k === "atualizar") runUpdate(); });
+    checkUpdate(function () { if (view === "settings" && items[cur] && items[cur]._k === "atualizar") setUpd(); });
   }
 
   function enterHelp() { show("help"); items = []; }

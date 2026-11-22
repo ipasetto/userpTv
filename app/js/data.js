@@ -1,6 +1,6 @@
 /* Igor TV — dados editáveis. */
 var IGORTV = {
-  versao: "1.3.0",
+  versao: "1.4.0",
   ipDoPC: "192.168.1.53",
 
   /* App que abre no botão YouTube: o TizenBrew, que carrega o TizenTube (sem anúncios). */
@@ -26,6 +26,12 @@ var IGORTV = {
     { n: "Telecine",     match: ["telecine"],              bg: "#a3123a" },
     { n: "Samsung TV Plus", match: ["samsung tv plus"],    bg: "#1a5ab0" }
   ],
+
+  /* Atualização pelo botão das Configurações: o serviço do TizenBrew Installer baixa a última versão
+     publicada neste repositório e instala por cima (IDs conferidos no pacote do Installer, v1.1.3). */
+  repo: "ipasetto/userpTv",
+  instaladorServico: "xvvl3S1bTI.InstallerService",
+  instaladorApp: "xvvl3S1bTI.TizenBrewStandalone",
 
   /* Lista de canais editável no GitHub: o app lê este arquivo ao abrir (sem precisar reinstalar).
      Se não conseguir, usa a última lista boa ou a lista abaixo. */
