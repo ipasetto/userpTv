@@ -56,12 +56,25 @@
       tizen.application.getAppsInfo(function (list) {
         installed = [];
         each(list, function (a) {
-          if (a.show === false || a.id === SELF || !a.name) return;
-          installed.push({ id: a.id, name: a.name, icon: a.iconPath });
+          if (userApp(a)) installed.push({ id: a.id, name: SAMSUNG_VISIVEIS[a.id] || a.name, icon: a.iconPath });
         });
         cb();
       }, function () { cb(); });
     } catch (e) { cb(); }
+  }
+  /* A TV devolve ~190 apps internos (serviços, testes de fábrica, "App"...). Só interessam os apps de loja,
+     cujo código tem 10 letras/números + ponto + nome (ex.: RN1MCdNq8t.Netflix), e alguns da Samsung que
+     aparecem para o usuário. Conferido na TV em 22/11/2026. */
+  var SAMSUNG_VISIVEIS = { "org.tizen.browser": "Internet", "com.samsung.tv.gallery": "Galeria", "com.samsung.tv.tvPlusDeeplinker": "Samsung TV Plus" };
+  function userApp(a) {
+    if (!a.id || !a.name || a.id === SELF) return false;
+    if (SAMSUNG_VISIVEIS[a.id]) return true;
+    if (!/^[A-Za-z0-9]{10}\.[A-Za-z0-9]+$/.test(a.id)) return false;
+    if (a.show === false) return false;
+    if (/service/i.test(a.id) || /service/i.test(a.name)) return false;
+    var cats = (a.categories || []).join(" ");
+    if (/service|ime|widget/i.test(cats)) return false;
+    return true;
   }
   function findApp(def) {
     var hit = null;
