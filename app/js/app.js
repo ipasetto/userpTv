@@ -81,6 +81,70 @@
     return hit;
   }
 
+  /* Nome curto e cores de um app instalado ("Spotify - Music and Podcasts" vira "Spotify"). */
+  var PALETA = ["#1b4f8f", "#1a5a6a", "#1a7a5a", "#8a3a14", "#2a3a8a", "#8a1a3a", "#3a6a1a", "#5a4a14"];
+  function hash(s) { var h = 0; for (var i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) | 0; return Math.abs(h); }
+  function matchDef(a) {
+    var n = low(a.name), found = null;
+    each(D.favoritos, function (def) {
+      if (found) return;
+      each(def.match, function (m) {
+        if (found) return;
+        if (m === "__youtube__") { if (a.id === D.youtubeSemAnuncios) found = def; return; }
+        if (def.exato ? (n === m || n.indexOf(m + " ") === 0) : n.indexOf(m) >= 0) found = def;
+      });
+    });
+    return found;
+  }
+  function present(a) {
+    if (a.id !== D.youtubeSemAnuncios && low(a.name) === "youtube")
+      return { n: "YouTube original", sub: "com anúncios", bg: "linear-gradient(135deg,#2a1414,#6a1a1a)", id: a.id };
+    var def = matchDef(a);
+    if (def) return { n: def.n, bg: def.bg, fg: def.fg, sub: def.sub, id: a.id };
+    var c = PALETA[hash(a.id) % PALETA.length];
+    return { n: a.name, bg: "linear-gradient(135deg," + c + ",#172231)", id: a.id };
+  }
+
+  /* Favoritos escolhidos pelo usuário, guardados na TV. Na primeira vez, usa os conhecidos que estiverem instalados. */
+  var FAVKEY = "igortv.favoritos";
+  function getFavIds() {
+    try { var s = localStorage.getItem(FAVKEY); if (s) return JSON.parse(s); } catch (e) {}
+    var ids = [];
+    each(D.favoritos, function (def) { var h = findApp(def); if (h && ids.indexOf(h.id) < 0) ids.push(h.id); });
+    return ids;
+  }
+  function setFavIds(ids) { try { localStorage.setItem(FAVKEY, JSON.stringify(ids)); } catch (e) {} }
+  function isFav(id) { return getFavIds().indexOf(id) >= 0; }
+  function toggleFav(app) {
+    var ids = getFavIds(), i = ids.indexOf(app.id);
+    if (i >= 0) { ids.splice(i, 1); toast(app.n + " saiu dos favoritos."); }
+    else { ids.push(app.id); toast(app.n + " entrou nos favoritos."); }
+    setFavIds(ids);
+  }
+
+  /* ---------------- menu de opções (abrir / favoritar) ---------------- */
+  var menuPrev = null;
+  function openMenu(title, opts) {
+    menuPrev = { items: items, cur: cur, onOk: onOk };
+    $("m-title").textContent = title;
+    var box = $("m-opts"); box.innerHTML = "";
+    var els = [];
+    each(opts, function (o) {
+      var b = document.createElement("div"); b.className = "mopt"; b.textContent = o[0]; b._do = o[1];
+      box.appendChild(b); els.push(b);
+    });
+    $("menu").hidden = false;
+    wire(els, function (el) { closeMenu(); if (el._do) el._do(); });
+  }
+  function closeMenu() {
+    if (!menuPrev) return;
+    $("menu").hidden = true;
+    var p = menuPrev; menuPrev = null;
+    items = p.items; onOk = p.onOk;
+    each(items, function (el) { el.classList.remove("on"); });
+    if (items.length) setOn(Math.min(p.cur, items.length - 1));
+  }
+
   /* ---------------- foco (quadro âmbar) ---------------- */
   var view = "home", items = [], cur = 0, onOk = null;
   function scrollTo(el) {
@@ -97,8 +161,8 @@
     items = list; onOk = ok; cur = 0;
     each(list, function (el, i) {
       el.classList.remove("on");
-      el.onmouseover = function () { setOn(i); };
-      el.onclick = function () { setOn(i); ok(el); };
+      el.onmouseover = function () { if (items === list) setOn(i); };
+      el.onclick = function () { if (items !== list) return; setOn(i); ok(el); };
     });
     if (list.length) setOn(start || 0);
   }
@@ -182,42 +246,50 @@
     b.innerHTML = '<svg viewBox="0 0 24 24">' + ICONS[f[0]] + "</svg><span>" + f[1] + "</span>";
     $("dock").appendChild(b);
   });
-  var homeFocus = 0;
+  var homeKey = null;
   function enterHome() {
     show("home");
-    var favs = [];
-    each(D.favoritos, function (def) {
-      var hit = findApp(def);
-      if (hit) favs.push({ n: def.n, bg: def.bg, fg: def.fg, sub: def.sub, id: hit.id });
-    });
+    var favs = [], ids = getFavIds();
+    each(installed, function (a) { if (ids.indexOf(a.id) >= 0) favs.push(present(a)); });
     favs.sort(function (a, b) { return a.n.localeCompare(b.n, "pt-BR"); });
     var s = shape(favs.length);
-    $("more").textContent = s.scroll ? "· " + favs.length + " apps, role para ver todos" : "";
+    $("more").textContent = (s.scroll ? "· " + favs.length + " apps, role para ver todos " : "") + "· para mudar, abra Todos os apps";
     var tiles = fillGrid($("grid"), favs, s, "9rem");
+    if (!favs.length) $("grid").innerHTML = '<p class="nofav">Nenhum favorito ainda. Abra <b>Todos os apps</b> na barra de baixo, escolha um app e aperte OK para adicionar.</p>';
     var all = tiles.concat(Array.prototype.slice.call($("dock").children));
+    var start = 0;
+    each(all, function (el, i) { if (homeKey && (el._app ? el._app.id : el._fn) === homeKey) start = i; });
     wire(all, function (el) {
-      homeFocus = cur;
+      homeKey = el._app ? el._app.id : el._fn;
       if (el._app) return launch(el._app.id, el._app.n);
       if (el._fn === "TV ao vivo") return enterGuide();
       if (el._fn === "Entradas HDMI") return launchFirst(D.entradas, "a troca de entrada");
       if (el._fn === "Todos os apps") return enterApps();
       if (el._fn === "Configurações") return enterSettings();
       if (el._fn === "Ajuda") return enterHelp();
-    }, Math.min(homeFocus, all.length - 1));
+    }, start);
   }
 
   /* ---------------- TODOS OS APPS ---------------- */
-  var PALETA = ["#1b4f8f", "#1a5a6a", "#1a7a5a", "#8a3a14", "#2a3a8a", "#8a1a3a", "#3a6a1a", "#5a4a14"];
-  function enterApps() {
+  var STAR = '<svg class="star" viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>';
+  function enterApps(focus) {
     show("apps");
-    var list = installed.slice().sort(function (a, b) { return a.name.localeCompare(b.name, "pt-BR"); });
-    var tiles = [];
-    each(list, function (a, i) {
-      var c = PALETA[i % PALETA.length];
-      tiles.push({ n: a.name, id: a.id, bg: "linear-gradient(135deg," + c + ",#172231)" });
-    });
+    var ids = getFavIds(), tiles = [];
+    each(installed, function (a) { var p = present(a); p.fav = ids.indexOf(a.id) >= 0; tiles.push(p); });
+    tiles.sort(function (a, b) { return a.n.localeCompare(b.n, "pt-BR"); });
     var els = fillGrid($("allgrid"), tiles, { cols: 4, mark: 2, compact: true, scroll: true }, "8.6rem");
-    wire(els, function (el) { launch(el._app.id, el._app.n); });
+    each(els, function (el) {
+      if (el._app.fav) { el.classList.add("isfav"); el.querySelector(".letter").outerHTML = STAR; }
+      el.querySelector(".okt").textContent = "OK: opções";
+    });
+    wire(els, function (el) {
+      var a = el._app, at = cur;
+      openMenu(a.n, [
+        ["Abrir " + a.n, function () { launch(a.id, a.n); }],
+        [a.fav ? "Tirar dos favoritos" : "Adicionar aos favoritos", function () { toggleFav(a); enterApps(at); }],
+        ["Cancelar", null]
+      ]);
+    }, Math.min(focus || 0, els.length - 1));
   }
 
   /* ---------------- TV AO VIVO ---------------- */
@@ -383,6 +455,13 @@
   }
   document.addEventListener("keydown", function (e) {
     var k = e.keyCode;
+    if (menuPrev) {
+      if (k === K.BACK || k === K.ESC || k === K.BKSP) { e.preventDefault(); return closeMenu(); }
+      if (k === K.UP) { e.preventDefault(); return nearest(0, -1); }
+      if (k === K.DOWN) { e.preventDefault(); return nearest(0, 1); }
+      if (k === K.ENTER) { e.preventDefault(); return onOk(items[cur]); }
+      e.preventDefault(); return;
+    }
     if (k >= 48 && k <= 57) { e.preventDefault(); return digit(String(k - 48)); }
     if (k === K.BACK || k === K.ESC || k === K.BKSP) { e.preventDefault(); return back(); }
     if (view === "watch") {

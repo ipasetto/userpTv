@@ -139,3 +139,15 @@ html.watching,html.watching body,html.watching #tv{background:transparent!import
 
 .toast{position:absolute;left:50%;bottom:11rem;-webkit-transform:translate(-50%,1rem);transform:translate(-50%,1rem);opacity:0;background:var(--paper);color:var(--ink);font-weight:700;font-size:1.8rem;padding:1rem 2.2rem;border-radius:5rem;-webkit-transition:opacity .2s,-webkit-transform .2s;transition:opacity .2s,transform .2s;z-index:9;white-space:nowrap}
 .toast.show{opacity:1;-webkit-transform:translate(-50%,0);transform:translate(-50%,0)}
+
+/* ---------- MENU DE OPÇÕES ---------- */
+.menu-back{position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(6,10,15,.72);display:flex;align-items:center;justify-content:center;z-index:8}
+.sheet{width:44rem;background:var(--ink-2);border-radius:2rem;padding:2.6rem 2.8rem 2.2rem;box-shadow:0 2rem 5rem rgba(0,0,0,.6)}
+.sheet h2{margin:0 0 1.6rem;font-family:var(--display);font-weight:500;font-size:2.6rem;line-height:1.1}
+.mopt{background:var(--ink-3);border-radius:1.1rem;padding:1.3rem 1.8rem;margin-bottom:.9rem;font-size:1.9rem;font-weight:700}
+.mopt.on{background:var(--amber);color:var(--amber-ink)}
+.sheet .hint{margin-top:1.4rem}
+.app .star{width:1.6rem;height:1.6rem;fill:var(--amber);stroke:none;flex:none}
+.app.on .star{fill:var(--amber-ink)}
+.nofav{margin:.8rem;font-size:2rem;line-height:1.5;color:var(--muted);max-width:60rem}
+.nofav b{color:var(--paper)}
