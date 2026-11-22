@@ -104,8 +104,10 @@ h1.hello{margin:0;font-family:var(--display);font-weight:300;font-size:3.4rem;li
 /* ---------- ASSISTINDO ---------- */
 #watch{padding:0;background:transparent}
 /* o player da Samsung desenha o vídeo atrás da página: tudo fica transparente enquanto assiste */
-html.watching,html.watching body,html.watching #tv{background:transparent!important;background-image:none!important}
-#av,#vid{position:absolute;top:0;left:0;width:100%;height:100%}
+html.watching,html.watching body,html.watching #tv,html.previewing,html.previewing body,html.previewing #tv{background:transparent!important;background-image:none!important}
+#av{position:absolute;top:0;left:0;width:100%;height:100%;z-index:0}
+#vid{position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;background:#000;object-fit:contain}
+.view{z-index:1}
 .loading{position:absolute;top:50%;left:0;right:0;text-align:center;font-family:var(--display);font-size:2.4rem;color:var(--muted);margin-top:-1.5rem}
 .banner{position:absolute;left:4rem;right:4rem;bottom:3rem;display:flex;align-items:center;background:rgba(10,14,20,.88);border-radius:1.6rem;padding:1.6rem 2.2rem;-webkit-transition:opacity .3s;transition:opacity .3s;box-shadow:0 1rem 3rem rgba(0,0,0,.5);z-index:3}
 .banner.hide{opacity:0}
@@ -151,3 +153,12 @@ html.watching,html.watching body,html.watching #tv{background:transparent!import
 .app.on .star{fill:var(--amber-ink)}
 .nofav{margin:.8rem;font-size:2rem;line-height:1.5;color:var(--muted);max-width:60rem}
 .nofav b{color:var(--paper)}
+/* ---------- PRÉVIA AO VIVO NO GUIA ---------- */
+/* O vídeo fica atrás da página; o painel da prévia vira um "buraco" transparente e uma sombra
+   sólida cobre o resto. Cabeçalho, tipos e lista ficam por cima dessa sombra. */
+#guide .ghead,#guide .cats,#guide .list,#guide .empty{position:relative;z-index:2}
+.preview{z-index:1}
+.preview.live{background:transparent;box-shadow:0 0 0 300rem var(--ink)}
+.preview.live .wm{display:none}
+.preview .loading{position:absolute;top:42%;left:0;right:0;margin:0;font-size:1.8rem;z-index:2}
+.msub{margin:-.6rem 0 1.6rem;font-size:1.6rem;line-height:1.45;color:var(--muted)}

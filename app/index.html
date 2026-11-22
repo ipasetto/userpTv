@@ -19,6 +19,9 @@
 </head>
 <body>
 <div id="tv">
+  <!-- vídeo: fica fora das telas e é posicionado por JS (prévia ou tela cheia) -->
+  <object id="av" type="application/avplayer"></object>
+  <video id="vid" autoplay hidden></video>
 
   <!-- INÍCIO -->
   <div class="view" id="home">
@@ -56,7 +59,8 @@
       <div class="preview" id="preview">
         <span class="wm" id="p-wm"></span>
         <span class="pill"><i></i>AO VIVO</span>
-        <div class="pinfo"><span class="num" id="p-num"></span><span class="nm" id="p-nm"></span><span class="ok">Aperte OK para assistir em tela cheia</span></div>
+        <div class="pinfo"><span class="num" id="p-num"></span><span class="nm" id="p-nm"></span><span class="ok" id="p-ok">Aperte OK para assistir em tela cheia</span></div>
+        <div class="loading" id="p-load" hidden></div>
       </div>
       <div class="list" id="list"></div>
     </div>
@@ -65,9 +69,7 @@
 
   <!-- ASSISTINDO -->
   <div class="view" id="watch" hidden>
-    <object id="av" type="application/avplayer"></object>
-    <video id="vid" autoplay hidden></video>
-    <div class="loading" id="w-load">Carregando o canal…</div>
+    <div class="loading" id="w-load" hidden>Carregando o canal…</div>
     <div class="typed" id="typed" hidden></div>
     <div class="banner" id="banner">
       <span class="num" id="w-num"></span>
@@ -107,6 +109,7 @@
   <div class="menu-back" id="menu" hidden>
     <div class="sheet">
       <h2 id="m-title"></h2>
+      <p class="msub" id="m-sub" hidden></p>
       <div id="m-opts"></div>
       <div class="hint"><span class="key" data-i="up"></span><span class="key" data-i="down"></span><b>escolher</b><span class="key">OK</span><b>confirmar</b><span class="key">Voltar</span><b>fechar</b></div>
     </div>

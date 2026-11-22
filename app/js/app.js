@@ -124,9 +124,10 @@
 
   /* ---------------- menu de opções (abrir / favoritar) ---------------- */
   var menuPrev = null;
-  function openMenu(title, opts) {
+  function openMenu(title, opts, sub) {
     menuPrev = { items: items, cur: cur, onOk: onOk };
     $("m-title").textContent = title;
+    $("m-sub").textContent = sub || ""; $("m-sub").hidden = !sub;
     var box = $("m-opts"); box.innerHTML = "";
     var els = [];
     each(opts, function (o) {
@@ -185,6 +186,7 @@
     view = v;
     each(["home", "apps", "guide", "watch", "settings", "help"], function (x) { $(x).hidden = x !== v; });
     if (v === "watch") document.documentElement.classList.add("watching"); else document.documentElement.classList.remove("watching");
+    if (v !== "watch" && v !== "guide") stopPlayer();   /* saiu da TV ao vivo: para o vídeo */
   }
 
   /* ---------------- grade adaptável ---------------- */
@@ -293,7 +295,7 @@
   }
 
   /* ---------------- TV AO VIVO ---------------- */
-  var CATS = ["Todos", "Abertos", "Notícias", "Públicos"];
+  var CATS = ["Todos", "Abertos", "Notícias", "Públicos", "Pelo app"];
   var canais = [], catIdx = 0, lastCh = 1, checked = false;
   try { lastCh = +localStorage.getItem("ultimoCanal") || 1; } catch (e) {}
   function checkChannels(cb) {
@@ -310,19 +312,53 @@
     function end() {
       ok.sort(function (a, b) { return a - b; });
       canais = [];
-      each(ok, function (i, k) {
+      each(ok, function (i) {
         var c = D.canais[i];
-        canais.push({ n: c.n, c: c.c, url: c.url, bg: c.bg, num: k + 1 });
+        canais.push({ n: c.n, c: c.c, url: c.url, bg: c.bg, num: canais.length + 1 });
+      });
+      /* canais que abrem pelo app oficial da emissora (Globo, SBT...) vêm depois, numerados em sequência */
+      each(D.canaisApp, function (c) {
+        canais.push({ n: c.n, c: "Pelo app", app: c.app, match: c.match, bg: c.bg, num: canais.length + 1 });
       });
       checked = true; cb();
     }
   }
+  function findChannelApp(ch) {
+    var hit = null;
+    each(ch.match, function (m) {
+      each(installed, function (a) { if (!hit && low(a.name).indexOf(m) >= 0) hit = a; });
+    });
+    return hit;
+  }
+  function openChannelApp(ch) {
+    var hit = findChannelApp(ch);
+    if (hit) return launch(hit.id, ch.app);
+    openMenu(ch.n, [
+      ["Abrir a loja de apps", function () { launch("com.samsung.tv.store", "a loja de apps"); }],
+      ["Cancelar", null]
+    ], "Para ver " + ch.n + " ao vivo, instale o app " + ch.app + " na loja de apps da TV" +
+       (ch.n === "Globo" ? " e entre com uma Conta Globo gratuita." : "."));
+  }
+  function byNum(n) { var r = null; each(canais, function (c) { if (c.num === n) r = c; }); return r; }
   each(CATS, function (c) {
     var b = document.createElement("div"); b.className = "cat"; b.textContent = c; $("cats").appendChild(b);
   });
+  /* Prévia: espera o foco parar por um instante e toca o canal dentro do painel da esquerda. */
+  var previewT;
   function showPreview(ch) {
-    $("preview").style.setProperty("--pbg", ch.bg);
-    $("p-wm").textContent = ch.n; $("p-num").textContent = "Canal " + ch.num + " · " + ch.c; $("p-nm").textContent = ch.n;
+    var p = $("preview");
+    p.style.setProperty("--pbg", ch.bg); p.className = "preview";
+    $("p-wm").textContent = ch.n; $("p-num").textContent = "Canal " + ch.num + " · " + (ch.app ? "pelo app " + ch.app : ch.c);
+    $("p-nm").textContent = ch.n;
+    clearTimeout(previewT);
+    if (ch.app) {
+      stopPlayer();
+      $("p-ok").textContent = findChannelApp(ch) ? "Aperte OK para abrir o " + ch.app : "Aperte OK para saber como instalar o " + ch.app;
+      $("p-load").hidden = true;
+      return;
+    }
+    $("p-ok").textContent = "Aperte OK para assistir em tela cheia";
+    previewT = setTimeout(function () { if (view === "guide") play(ch.url, p); }, 700);
   }
   function fillList(focusNum) {
     each($("cats").children, function (b, i) { b.className = "cat" + (i === catIdx ? " sel" : ""); });
@@ -334,12 +370,13 @@
     var els = [], start = 0;
     each(list, function (ch, i) {
       var b = document.createElement("div"); b.className = "ch"; b.setAttribute("data-scroll", "1"); b._ch = ch;
-      b.innerHTML = '<span class="n">' + ch.num + '</span><span class="t">' + ch.n + '<span class="c">' + ch.c + '</span></span><span class="go">OK assistir</span>';
+      b.innerHTML = '<span class="n">' + ch.num + '</span><span class="t">' + ch.n + '<span class="c">' +
+        (ch.app ? "pelo app " + ch.app : ch.c) + '</span></span><span class="go">' + (ch.app ? "OK abrir app" : "OK assistir") + "</span>";
       b.onfocusin2 = function () { showPreview(ch); };
       box.appendChild(b); els.push(b);
       if (ch.num === focusNum) start = i;
     });
-    wire(els, function (el) { enterWatch(el._ch.num); }, start);
+    wire(els, function (el) { if (el._ch.app) openChannelApp(el._ch); else enterWatch(el._ch.num); }, start);
   }
   function enterGuide(focusNum) {
     show("guide");
@@ -354,49 +391,85 @@
   /* ---------------- ASSISTINDO ---------------- */
   var AV = null;
   try { if (window.webapis && webapis.avplay) AV = webapis.avplay; } catch (e) {}
-  var wnum = 1, bannerT;
-  function stopPlayer() {
-    if (AV) { try { AV.stop(); } catch (e) {} try { AV.close(); } catch (e) {} }
-    var v = $("vid"); v.pause(); v.removeAttribute("src");
+  if (!AV) $("av").style.display = "none";   /* fora da TV (navegador do PC) o player da Samsung não existe */
+  var wnum = 1, bannerT, curUrl = null, curBox = null;
+  /* Mensagem de estado: na prévia ou na tela cheia, conforme onde o vídeo está. */
+  function status(t) {
+    var el = view === "watch" ? $("w-load") : $("p-load");
+    $("w-load").hidden = true; $("p-load").hidden = true;
+    if (t) { el.textContent = t; el.hidden = false; }
   }
-  function play(url) {
-    stopPlayer();
-    $("w-load").hidden = false; $("w-load").textContent = "Carregando o canal…";
+  function stopPlayer() {
+    clearTimeout(previewT);
+    if (AV) { try { AV.stop(); } catch (e) {} try { AV.close(); } catch (e) {} }
+    var v = $("vid"); v.pause(); v.removeAttribute("src"); v.hidden = true;
+    curUrl = null; curBox = null;
+    $("preview").className = "preview";
+    document.documentElement.classList.remove("previewing");
+  }
+  /* Coloca o vídeo sobre o elemento "box" (o painel da prévia) ou na tela inteira (box = null). */
+  function placeVideo(box) {
+    curBox = box;
+    var tr = $("tv").getBoundingClientRect(), r = box ? box.getBoundingClientRect() : tr;
+    var v = $("vid");
+    v.style.left = (r.left - tr.left) + "px"; v.style.top = (r.top - tr.top) + "px";
+    v.style.width = r.width + "px"; v.style.height = r.height + "px";
     if (AV) {
-      $("vid").hidden = true; $("av").style.display = "block";
+      var k = 1920 / window.innerWidth;
+      try { AV.setDisplayRect(Math.round(r.left * k), Math.round(r.top * k), Math.round(r.width * k), Math.round(r.height * k)); } catch (e) {}
+    }
+    if (box) { box.className = "preview live"; document.documentElement.classList.add("previewing"); }
+    else { $("preview").className = "preview"; document.documentElement.classList.remove("previewing"); }
+  }
+  var FALHOU = "Este canal não abriu agora. Tente outro.";
+  function play(url, box) {
+    if (url === curUrl) { placeVideo(box || null); return; }   /* mesmo canal: só muda o tamanho, sem recarregar */
+    stopPlayer();
+    curUrl = url;
+    status("Carregando o canal…");
+    if (AV) {
       try {
         AV.open(url);
-        var r = $("tv").getBoundingClientRect(), k = 1920 / window.innerWidth;
-        AV.setDisplayRect(Math.round(r.left * k), Math.round(r.top * k), Math.round(r.width * k), Math.round(r.height * k));
+        placeVideo(box || null);
         AV.setListener({
-          onbufferingcomplete: function () { $("w-load").hidden = true; },
-          onerror: function () { $("w-load").hidden = false; $("w-load").textContent = "Este canal não abriu agora. Use ▲ ▼ para trocar."; }
+          onbufferingcomplete: function () { status(null); },
+          onerror: function () { status(FALHOU); }
         });
-        AV.prepareAsync(function () { AV.play(); $("w-load").hidden = true; },
-          function () { $("w-load").textContent = "Este canal não abriu agora. Use ▲ ▼ para trocar."; });
-      } catch (e) { $("w-load").textContent = "Este canal não abriu agora. Use ▲ ▼ para trocar."; }
+        AV.prepareAsync(function () { if (curUrl !== url) return; AV.play(); status(null); }, function () { status(FALHOU); });
+      } catch (e) { status(FALHOU); }
     } else {
-      $("av").style.display = "none";
       var v = $("vid"); v.hidden = false; v.src = url;
-      v.onplaying = function () { $("w-load").hidden = true; };
-      v.onerror = function () { $("w-load").textContent = "Prévia no PC: o vídeo só toca na TV."; };
-      var p = v.play(); if (p && p.catch) p.catch(function () {});
+      placeVideo(box || null);
+      v.onplaying = function () { status(null); };
+      v.onerror = function () { status("No PC o vídeo pode não tocar; na TV toca."); };
+      var pr = v.play(); if (pr && pr.catch) pr.catch(function () {});
     }
   }
   function bannerShow() {
     var b = $("banner"); b.className = "banner";
     clearTimeout(bannerT); bannerT = setTimeout(function () { b.className = "banner hide"; }, 4000);
   }
-  function tune(num) {
-    if (!canais.length) return;
-    wnum = ((num - 1 + canais.length) % canais.length) + 1; lastCh = wnum;
+  /* ▲ ▼ na tela cheia passam só pelos canais que tocam aqui (os "pelo app" ficam de fora). */
+  function streams() { var r = []; each(canais, function (c) { if (c.url) r.push(c); }); return r; }
+  function tune(num, dir) {
+    var s = streams(); if (!s.length) return;
+    /* número de um canal "pelo app" ou inexistente: vai para o canal tocável mais próximo na direção */
+    var idx = -1, i;
+    if (dir < 0) { for (i = s.length - 1; i >= 0; i--) if (s[i].num <= num) { idx = i; break; } if (idx < 0) idx = s.length - 1; }
+    else { for (i = 0; i < s.length; i++) if (s[i].num >= num) { idx = i; break; } if (idx < 0) idx = 0; }
+    var ch = s[idx];
+    wnum = ch.num; lastCh = wnum;
     try { localStorage.setItem("ultimoCanal", wnum); } catch (e) {}
-    var ch = canais[wnum - 1];
     $("w-num").textContent = ch.num; $("w-nm").textContent = ch.n; $("w-c").textContent = ch.c;
-    bannerShow(); play(ch.url);
+    bannerShow(); play(ch.url, null);
   }
-  function enterWatch(num) { show("watch"); items = []; tune(num); }
-  function leaveWatch() { stopPlayer(); enterGuide(wnum); }
+  function step(dir) {
+    var s = streams(), idx = 0;
+    each(s, function (c, i) { if (c.num === wnum) idx = i; });
+    tune(s[(idx + dir + s.length) % s.length].num, dir);
+  }
+  function enterWatch(num) { show("watch"); items = []; tune(num, 1); }
+  function leaveWatch() { enterGuide(wnum); }
 
   /* ---------------- número digitado ---------------- */
   var typed = "", typT;
@@ -408,9 +481,10 @@
     typT = setTimeout(function () {
       var n = +typed; typed = ""; t.hidden = true;
       if (!checked) { enterGuide(n); return; }
-      if (n >= 1 && n <= canais.length) {
-        if (view === "watch") tune(n); else { catIdx = 0; show("guide"); fillList(n); }
-      } else toast("Não existe o canal " + n + ".");
+      var ch = byNum(n);
+      if (!ch) return toast("Não existe o canal " + n + ".");
+      if (view === "watch") { if (ch.app) openChannelApp(ch); else tune(n, 1); }
+      else { catIdx = 0; show("guide"); fillList(n); }
     }, 1000);
   }
 
@@ -465,15 +539,15 @@
     if (k >= 48 && k <= 57) { e.preventDefault(); return digit(String(k - 48)); }
     if (k === K.BACK || k === K.ESC || k === K.BKSP) { e.preventDefault(); return back(); }
     if (view === "watch") {
-      if (k === K.UP || k === K.CH_UP) tune(wnum + 1);
-      else if (k === K.DOWN || k === K.CH_DOWN) tune(wnum - 1);
+      if (k === K.UP || k === K.CH_UP) step(1);
+      else if (k === K.DOWN || k === K.CH_DOWN) step(-1);
       else if (k === K.ENTER) leaveWatch();
       else bannerShow();
       e.preventDefault(); return;
     }
     if ((k === K.CH_UP || k === K.CH_DOWN) && view !== "watch") {
       e.preventDefault(); if (!checked) return enterGuide();
-      return enterWatch(k === K.CH_UP ? lastCh + 1 : lastCh - 1);
+      show("watch"); items = []; return tune(k === K.CH_UP ? lastCh + 1 : lastCh - 1, k === K.CH_UP ? 1 : -1);
     }
     if (view === "guide" && (k === K.LEFT || k === K.RIGHT)) {
       e.preventDefault(); if (!checked) return;
@@ -488,8 +562,9 @@
 
   /* Ao voltar para o app (depois de abrir Netflix etc.), atualiza a lista de apps. */
   document.addEventListener("visibilitychange", function () {
-    if (document.hidden) { if (view === "watch") stopPlayer(); return; }
-    if (view === "watch") { tune(wnum); return; }
+    if (document.hidden) { stopPlayer(); return; }
+    if (view === "watch") { tune(wnum, 1); return; }
+    if (view === "guide" && items[cur] && items[cur].onfocusin2) items[cur].onfocusin2();
     loadApps(function () { if (view === "home") enterHome(); });
   });
 
