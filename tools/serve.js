@@ -11,4 +11,4 @@ http.createServer((req, res) => {
     res.writeHead(200, { "Content-Type": types[path.extname(file)] || "application/octet-stream" });
     res.end(data);
   });
-}).listen(8123, () => console.log("Igor TV em http://localhost:8123"));
+}).listen(8123, () => console.log("IPTV em http://localhost:8123"));

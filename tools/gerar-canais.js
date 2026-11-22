@@ -3,11 +3,11 @@
 const fs = require("fs"), path = require("path"), vm = require("vm");
 const root = path.join(__dirname, "..");
 const ctx = {};
-vm.runInNewContext(fs.readFileSync(path.join(root, "app/js/data.js"), "utf8") + ";this.IGORTV = IGORTV;", ctx);
+vm.runInNewContext(fs.readFileSync(path.join(root, "app/js/data.js"), "utf8") + ";this.USERPTV = USERPTV;", ctx);
 const out = {
   comoEditar: "Cada canal: n = nome, c = tipo (vira uma aba no guia), url = endereço .m3u8, bg = cor do quadro. " +
     "Só transmissões oficiais e gratuitas. O app lê este arquivo toda vez que abre.",
-  canais: ctx.IGORTV.canais
+  canais: ctx.USERPTV.canais
 };
 fs.writeFileSync(path.join(root, "canais.json"), JSON.stringify(out, null, 2) + "\n", "utf8");
 console.log("canais.json com " + out.canais.length + " canais");

@@ -1,6 +1,6 @@
-// Roda uma expressão JS dentro do Igor TV aberto na TV (modo depuração) e mostra o resultado.
+// Roda uma expressão JS dentro do IPTV aberto na TV (modo depuração) e mostra o resultado.
 // Uso: node tools/tv-eval.js <porta> "<expressão>"
-// Antes: sdb shell 0 debug IgorTVHome.IgorTV  →  sdb forward tcp:<porta> tcp:<porta>
+// Antes: sdb shell 0 debug UserpTvApp.IPTV  →  sdb forward tcp:<porta> tcp:<porta>
 const [port, expr] = process.argv.slice(2);
 (async () => {
   const list = await (await fetch(`http://127.0.0.1:${port}/json`)).json();

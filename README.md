@@ -1,4 +1,4 @@
-# Igor TV (userpTv)
+# IPTV (userpTv)
 
 Tela inicial personalizada para a TV Samsung UN40NU7100 (2018, Tizen 4).
 
@@ -26,9 +26,9 @@ Edite `atalhos.json` aqui no GitHub e acrescente, dentro de `"atalhos": [ ]`, um
 
 - `app/`: o app Tizen (HTML, CSS, JS). Escrito para o navegador antigo do Tizen 4: sem CSS grid, sem `gap` em flex, sem spread.
 - `app/js/data.js`: favoritos, canais e IDs editáveis.
-- `build.ps1`: gera `dist/IgorTV.wgt`, assinado com o perfil `igortv` do Tizen Studio.
+- `build.ps1`: gera `dist/IPTV.wgt`, assinado com o perfil `userptv` do Tizen Studio.
 - `tools/serve.js`: servidor local para ver o app no navegador do PC (`node tools/serve.js`, porta 8123).
-- `tools/tv-eval.js`: roda JS dentro do app aberto na TV (depuração): `sdb shell 0 debug IgorTVHome.IgorTV`, `sdb forward tcp:P tcp:P`, `node tools/tv-eval.js P "expressão"`.
+- `tools/tv-eval.js`: roda JS dentro do app aberto na TV (depuração): `sdb shell 0 debug UserpTvApp.IPTV`, `sdb forward tcp:P tcp:P`, `node tools/tv-eval.js P "expressão"`.
 
 ## Créditos
 

@@ -1,4 +1,4 @@
-/* Igor TV — tela 1920x1080. Sem degradês: o navegador da TV desenha degradês grandes em blocos
+/* IPTV — tela 1920x1080. Sem degradês: o navegador da TV desenha degradês grandes em blocos
    e as emendas aparecem como listras verticais. Só cores sólidas. Navegador da TV (Tizen 4) é antigo:
    sem CSS grid, sem gap em flex, sem inset, sem aspect-ratio. Tudo em rem (1rem = 1/100 da largura do palco 16:9, ajustado por JS) e flexbox. */
 @font-face{font-family:"Atkinson";src:url(../fonts/atkinson-400.woff2) format("woff2");font-weight:400}

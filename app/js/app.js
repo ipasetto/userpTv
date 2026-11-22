@@ -1,14 +1,14 @@
-/* Igor TV — tela inicial. Escrito para o navegador do Tizen 4 (Chromium antigo):
+/* IPTV — tela inicial. Escrito para o navegador do Tizen 4 (Chromium antigo):
    sem spread, sem optional chaining, sem CSS grid. */
 /* Se um ícone não carregar, tenta o próximo da lista; sem mais nenhum, remove a imagem e fica só o nome. */
-function igortvIco(img) {
+function iptvIco(img) {
   var alts = (img.getAttribute("data-alt") || "").split("|").filter(function (x) { return x; });
   if (alts.length) { img.setAttribute("data-alt", alts.slice(1).join("|")); img.src = alts[0]; }
   else if (img.parentNode) img.parentNode.removeChild(img);
 }
 (function () {
   "use strict";
-  var D = IGORTV;
+  var D = USERPTV;
   var NA_TV = typeof window.tizen !== "undefined";
   function $(id) { return document.getElementById(id); }
   function each(list, fn) { for (var i = 0; i < list.length; i++) fn(list[i], i); }
@@ -142,7 +142,7 @@ function igortvIco(img) {
   }
 
   /* Favoritos escolhidos pelo usuário, guardados na TV. Na primeira vez, usa os conhecidos que estiverem instalados. */
-  var FAVKEY = "igortv.favoritos";
+  var FAVKEY = "iptv.favoritos";
   function getFavIds() {
     try { var s = localStorage.getItem(FAVKEY); if (s) return JSON.parse(s); } catch (e) {}
     var ids = [];
@@ -237,7 +237,7 @@ function igortvIco(img) {
     var tag = a.sub ? '<span class="tag">' + a.sub + "</span>" : "";
     var ics = a.icons || [];
     function img(cls) {
-      return ics.length ? '<img class="' + cls + '" alt="" src="' + ics[0] + '" data-alt="' + ics.slice(1).join("|") + '" onerror="igortvIco(this)">' : "";
+      return ics.length ? '<img class="' + cls + '" alt="" src="' + ics[0] + '" data-alt="' + ics.slice(1).join("|") + '" onerror="iptvIco(this)">' : "";
     }
     var ico = img("logo"), icoS = img("logo-s");
     return '<span class="mark">' + ico + a.n + sub + '</span><span class="name">' + icoS + '<span class="t">' + a.n + tag +
@@ -345,14 +345,14 @@ function igortvIco(img) {
   try { lastCh = +localStorage.getItem("ultimoCanal") || 1; } catch (e) {}
   /* Lista de canais: lê canais.json do GitHub (dá para editar lá sem reinstalar o app).
      Sem internet ou com erro, usa a última lista que deu certo; sem ela, a lista que veio no app. */
-  var CANAIS_KEY = "igortv.canais";
+  var CANAIS_KEY = "iptv.canais";
   function validList(l) {
     if (!l || !l.length) return false;
     for (var i = 0; i < l.length; i++) if (!l[i] || !l[i].n || !l[i].url || !l[i].c) return false;
     return true;
   }
   /* Atalhos de sites: mesmo esquema dos canais (GitHub, depois última lista boa, depois a do app). */
-  var ATALHOS_KEY = "igortv.atalhos";
+  var ATALHOS_KEY = "iptv.atalhos";
   function validSites(l) {
     if (!l || typeof l.length !== "number") return false;
     for (var i = 0; i < l.length; i++) if (!l[i] || !l[i].n || !/^https?:\/\//.test(l[i].url || "")) return false;
@@ -612,16 +612,16 @@ function igortvIco(img) {
   /* ---------------- CONFIGURAÇÕES ---------------- */
   var PANELS = {
     instalar:
-      "<h2>Modo instalação</h2><p>Use só quando for instalar ou atualizar o Igor TV pelo computador.</p><ol>" +
+      "<h2>Modo instalação</h2><p>Use só quando for instalar ou atualizar o IPTV pelo computador.</p><ol>" +
       "<li>Aperte a casinha do controle e vá em <b>Apps</b>.</li>" +
       "<li>Digite <b>1 2 3 4 5</b> no controle.</li>" +
       "<li>Em “Host PC IP”, coloque <span class='ip'>" + D.ipDoPC + "</span> e aperte OK.</li>" +
       "<li>Segure o botão de energia até aparecer o logo da Samsung.</li></ol>" +
       "<p>Terminou? Repita os passos com <span class='ip'>127.0.0.1</span> para o YouTube sem anúncios voltar a funcionar.</p>",
-    tv: "<h2>Ajustes da TV</h2><p>Imagem, som, rede e atualização ficam no menu da Samsung.</p><ol><li>Aperte a <b>casinha</b> do controle.</li><li>Vá até a <b>engrenagem</b> (Configurações), no canto esquerdo.</li><li>Para voltar aqui, aperte a casinha e escolha <b>Igor TV</b>.</li></ol>",
+    tv: "<h2>Ajustes da TV</h2><p>Imagem, som, rede e atualização ficam no menu da Samsung.</p><ol><li>Aperte a <b>casinha</b> do controle.</li><li>Vá até a <b>engrenagem</b> (Configurações), no canto esquerdo.</li><li>Para voltar aqui, aperte a casinha e escolha <b>IPTV</b>.</li></ol>",
     sobre: ""
   };
-  /* ---------- atualizar o Igor TV pelo TizenBrew Installer ---------- */
+  /* ---------- atualizar o IPTV pelo TizenBrew Installer ---------- */
   var ultimaVersao = null;
   function checkUpdate(cb) {
     var x = new XMLHttpRequest();
@@ -632,14 +632,14 @@ function igortvIco(img) {
   }
   function updatePanel(msg) {
     var temNova = ultimaVersao && ultimaVersao !== D.versao;
-    return "<h2>Atualizar o Igor TV</h2><p>Instalada: <b>" + D.versao + "</b> · No GitHub: <b>" + (ultimaVersao || "não verificada") + "</b></p>" +
+    return "<h2>Atualizar o IPTV</h2><p>Instalada: <b>" + D.versao + "</b> · No GitHub: <b>" + (ultimaVersao || "não verificada") + "</b></p>" +
       "<p>" + (msg || (temNova ? "Tem versão nova. Aperte OK para atualizar." : "Aperte OK para reinstalar a versão do GitHub.")) + "</p>" +
-      "<p>O Igor TV fecha durante a instalação. Quando terminar, abra o Igor TV de novo.</p>";
+      "<p>O IPTV fecha durante a instalação. Quando terminar, abra o IPTV de novo.</p>";
   }
   var STATUS = {
     "installStatus.fetching": "Baixando do GitHub…", "installStatus.parsing": "Conferindo o pacote…",
-    "installStatus.resigning": "Preparando o pacote…", "installStatus.installing": "Instalando… o Igor TV vai fechar.",
-    "installStatus.installed": "Instalado! Abra o Igor TV de novo.",
+    "installStatus.resigning": "Preparando o pacote…", "installStatus.installing": "Instalando… o IPTV vai fechar.",
+    "installStatus.installed": "Instalado! Abra o IPTV de novo.",
     "errors.debuggingNotEnabled": "Não deu: o modo desenvolvedor precisa estar com o IP 127.0.0.1."
   };
   function setUpd(msg) { if (view === "settings") $("setpanel").innerHTML = updatePanel(msg); }
@@ -682,13 +682,13 @@ function igortvIco(img) {
   }
   function enterSettings() {
     show("settings");
-    PANELS.sobre = "<h2>Sobre o Igor TV</h2><p>Versão " + D.versao + "</p><p>" + installed.length +
+    PANELS.sobre = "<h2>Sobre o IPTV</h2><p>Versão " + D.versao + "</p><p>" + installed.length +
       " apps instalados encontrados.</p><p>" + (checked ? canais.length + " canais ao vivo funcionando." : "Canais ainda não verificados.") + "</p><p>Lista de canais: " + (D.fonteCanais || "do app") + ".</p>";
     var opts = [
-      ["atualizar", "Atualizar o Igor TV", "Baixa a versão nova do GitHub"],
+      ["atualizar", "Atualizar o IPTV", "Baixa a versão nova do GitHub"],
       ["instalar", "Modo instalação", "Para instalar ou atualizar pelo PC"],
       ["tv", "Ajustes da TV", "Como chegar no menu da Samsung"],
-      ["sobre", "Sobre o Igor TV", "Versão e informações"]
+      ["sobre", "Sobre o IPTV", "Versão e informações"]
     ];
     var box = $("setmenu"); box.innerHTML = "";
     var els = [];
