@@ -5,37 +5,37 @@
       "n": "TV Brasil",
       "c": "Abertos",
       "url": "https://tvbrasil-stream.ebc.com.br/index.m3u8",
-      "bg": "linear-gradient(135deg,#0a3a5a,#1270a8)"
+      "bg": "#1270a8"
     },
     {
       "n": "TV Cultura",
       "c": "Abertos",
       "url": "https://player-tvcultura.stream.uol.com.br/live/tvcultura.m3u8",
-      "bg": "linear-gradient(135deg,#0d4a3a,#16806a)"
+      "bg": "#16806a"
     },
     {
       "n": "Rede Minas",
       "c": "Abertos",
       "url": "https://8hzcavccys.zoeweb.tv/redeminas/ngrp:redeminas_all/playlist.m3u8",
-      "bg": "linear-gradient(135deg,#6a1a10,#b8441a)"
+      "bg": "#b8441a"
     },
     {
       "n": "CNN Brasil",
       "c": "Notícias",
       "url": "https://d25usgadhphvwi.cloudfront.net/hls/main.m3u8",
-      "bg": "linear-gradient(135deg,#3a0a0a,#a01818)"
+      "bg": "#a01818"
     },
     {
       "n": "Record News",
       "c": "Notícias",
       "url": "https://rnw-rn.otteravision.com/rnw/rn/rnw_rn.m3u8",
-      "bg": "linear-gradient(135deg,#4a0a1a,#8a1a2a)"
+      "bg": "#8a1a2a"
     },
     {
       "n": "TV Câmara",
       "c": "Públicos",
       "url": "https://stream3.camara.gov.br/tv1/manifest.m3u8",
-      "bg": "linear-gradient(135deg,#0a3a2a,#13804f)"
+      "bg": "#13804f"
     }
   ]
 }

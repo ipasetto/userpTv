@@ -1,5 +1,11 @@
 /* Igor TV — tela inicial. Escrito para o navegador do Tizen 4 (Chromium antigo):
    sem spread, sem optional chaining, sem CSS grid. */
+/* Se um ícone não carregar, tenta o próximo da lista; sem mais nenhum, remove a imagem e fica só o nome. */
+function igortvIco(img) {
+  var alts = (img.getAttribute("data-alt") || "").split("|").filter(function (x) { return x; });
+  if (alts.length) { img.setAttribute("data-alt", alts.slice(1).join("|")); img.src = alts[0]; }
+  else if (img.parentNode) img.parentNode.removeChild(img);
+}
 (function () {
   "use strict";
   var D = IGORTV;
@@ -44,10 +50,10 @@
   function loadApps(cb) {
     if (!NA_TV) {
       installed = [
-        { id: "n", name: "Netflix", icon: "icon.png" }, { id: "p", name: "Prime Video" }, { id: "g", name: "Globoplay" },
+        { id: "n", name: "Netflix", icons: ["nao-existe.png", "icon.png"] }, { id: "p", name: "Prime Video" }, { id: "g", name: "Globoplay" },
         { id: "d", name: "Disney+" }, { id: "m", name: "Max" }, { id: "s", name: "Spotify" },
         { id: "yk", name: "YouTube Kids" }, { id: D.youtubeSemAnuncios, name: "TizenBrew" },
-        { id: "y", name: "YouTube" }, { id: "b", name: "Navegador" }, { id: "gal", name: "Gallery" }
+        { id: "y", name: "YouTube", icons: ["icon.png"] }, { id: "b", name: "Navegador" }, { id: "gal", name: "Gallery" }
       ];
       cb(); return;
     }
@@ -56,7 +62,7 @@
       tizen.application.getAppsInfo(function (list) {
         installed = [];
         each(list, function (a) {
-          if (userApp(a)) installed.push({ id: a.id, name: SAMSUNG_VISIVEIS[a.id] || a.name, icon: a.iconPath });
+          if (userApp(a)) installed.push({ id: a.id, name: SAMSUNG_VISIVEIS[a.id] || a.name, icons: iconsOf(a) });
         });
         cb();
       }, function () { cb(); });
@@ -109,13 +115,30 @@
     });
     return found;
   }
+  /* Ícones do app: primeiro o "de painel" (o mesmo da barra da casinha), depois o que o app informa. */
+  function iconsOf(a) {
+    var l = [];
+    if (NA_TV) l.push("/opt/share/webappservice/apps_icon/Panel/" + a.id + "/250x250.png");
+    if (a.iconPath) l.push(a.iconPath);
+    return l;
+  }
+  /* Cor sólida a partir de qualquer valor de cor (degradês viram a última cor: degradê grande dá listras na TV). */
+  function solid(bg) { var m = String(bg || "").match(/#[0-9a-fA-F]{3,6}/g); return m ? m[m.length - 1] : "#22314a"; }
   function present(a) {
+    var p = present0(a);
+    if (a.id === D.youtubeSemAnuncios) {   /* YouTube sem anúncios abre o TizenBrew, mas mostra o ícone do YouTube */
+      each(installed, function (b) { if (b.id !== a.id && low(b.name) === "youtube") p.icons = b.icons; });
+    }
+    p.bg = solid(p.bg);
+    return p;
+  }
+  function present0(a) {
     if (a.id !== D.youtubeSemAnuncios && low(a.name) === "youtube")
-      return { n: "YouTube original", sub: "com anúncios", bg: "linear-gradient(135deg,#2a1414,#6a1a1a)", id: a.id, icon: a.icon };
+      return { n: "YouTube original", sub: "com anúncios", bg: "#5a1818", id: a.id, icons: a.icons };
     var def = matchDef(a);
-    if (def) return { n: def.n, bg: def.bg, fg: def.fg, sub: def.sub, id: a.id, icon: a.icon };
+    if (def) return { n: def.n, bg: def.bg, fg: def.fg, sub: def.sub, id: a.id, icons: a.icons };
     var c = PALETA[hash(a.id) % PALETA.length];
-    return { n: a.name, bg: "linear-gradient(135deg," + c + ",#172231)", id: a.id, icon: a.icon };
+    return { n: a.name, bg: c, id: a.id, icons: a.icons };
   }
 
   /* Favoritos escolhidos pelo usuário, guardados na TV. Na primeira vez, usa os conhecidos que estiverem instalados. */
@@ -212,8 +235,11 @@
   function tileHTML(a) {
     var sub = a.sub ? '<span class="sub">' + a.sub + "</span>" : "";
     var tag = a.sub ? '<span class="tag">' + a.sub + "</span>" : "";
-    var ico = a.icon ? '<img class="logo" alt="" src="' + a.icon + '" onerror="this.parentNode.removeChild(this)">' : "";
-    var icoS = a.icon ? '<img class="logo-s" alt="" src="' + a.icon + '" onerror="this.parentNode.removeChild(this)">' : "";
+    var ics = a.icons || [];
+    function img(cls) {
+      return ics.length ? '<img class="' + cls + '" alt="" src="' + ics[0] + '" data-alt="' + ics.slice(1).join("|") + '" onerror="igortvIco(this)">' : "";
+    }
+    var ico = img("logo"), icoS = img("logo-s");
     return '<span class="mark">' + ico + a.n + sub + '</span><span class="name">' + icoS + '<span class="t">' + a.n + tag +
       '</span><span class="letter">' + a.n.charAt(0) + '</span><span class="okt">OK para abrir</span></span>';
   }
@@ -268,6 +294,9 @@
     show("home");
     var favs = [], ids = getFavIds();
     each(installed, function (a) { if (ids.indexOf(a.id) >= 0) favs.push(present(a)); });
+    each(D.atalhos || [], function (w) {
+      favs.push({ n: w.n, sub: "site", bg: solid(w.bg || "#1b4f8f"), id: "web:" + w.url, url: w.url, icons: w.icone ? [w.icone] : [] });
+    });
     favs.sort(function (a, b) { return a.n.localeCompare(b.n, "pt-BR"); });
     var s = shape(favs.length);
     $("more").textContent = (s.scroll ? "· " + favs.length + " apps, role para ver todos " : "") + "· para mudar, abra Todos os apps";
@@ -278,6 +307,7 @@
     each(all, function (el, i) { if (homeKey && (el._app ? el._app.id : el._fn) === homeKey) start = i; });
     wire(all, function (el) {
       homeKey = el._app ? el._app.id : el._fn;
+      if (el._app && el._app.url) return openWeb(el._app.url, el._app.n);
       if (el._app) return launch(el._app.id, el._app.n);
       if (el._fn === "TV ao vivo") return enterGuide();
       if (el._fn === "Entradas HDMI") return launchFirst(D.entradas, "a troca de entrada");
@@ -320,6 +350,39 @@
     if (!l || !l.length) return false;
     for (var i = 0; i < l.length; i++) if (!l[i] || !l[i].n || !l[i].url || !l[i].c) return false;
     return true;
+  }
+  /* Atalhos de sites: mesmo esquema dos canais (GitHub, depois última lista boa, depois a do app). */
+  var ATALHOS_KEY = "igortv.atalhos";
+  function validSites(l) {
+    if (!l || typeof l.length !== "number") return false;
+    for (var i = 0; i < l.length; i++) if (!l[i] || !l[i].n || !/^https?:\/\//.test(l[i].url || "")) return false;
+    return true;
+  }
+  function loadAtalhos(cb) {
+    function cached() { try { var c = JSON.parse(localStorage.getItem(ATALHOS_KEY)); if (validSites(c)) D.atalhos = c; } catch (e) {} cb(); }
+    if (!D.atalhosURL) return cb();
+    var x = new XMLHttpRequest(), done = false;
+    x.open("GET", D.atalhosURL + "?t=" + Date.now(), true); x.timeout = 6000;
+    x.onload = function () {
+      if (done) return; done = true;
+      try {
+        var l = JSON.parse(x.responseText).atalhos;
+        if (x.status === 200 && validSites(l)) { D.atalhos = l; try { localStorage.setItem(ATALHOS_KEY, JSON.stringify(l)); } catch (e) {} return cb(); }
+      } catch (e) {}
+      cached();
+    };
+    x.onerror = x.ontimeout = function () { if (done) return; done = true; cached(); };
+    try { x.send(); } catch (e) { done = true; cached(); }
+  }
+  function openWeb(url, nome) {
+    if (!NA_TV) { toast("Abrindo " + nome + "…"); return; }
+    try {
+      var ctl = new tizen.ApplicationControl("http://tizen.org/appcontrol/operation/view", url, null, null, null);
+      tizen.application.launchAppControl(ctl, "org.tizen.browser", function () {}, function () {
+        try { tizen.application.launchAppControl(ctl, null, function () {}, function () { toast("Não consegui abrir " + nome + "."); }); }
+        catch (e) { toast("Não consegui abrir " + nome + "."); }
+      });
+    } catch (e) { toast("Não consegui abrir " + nome + "."); }
   }
   function loadChannelList(cb) {
     var done = false;
@@ -398,7 +461,7 @@
   var previewT;
   function showPreview(ch) {
     var p = $("preview");
-    p.style.setProperty("--pbg", ch.bg); p.className = "preview";
+    p.style.setProperty("--pbg", solid(ch.bg)); p.className = "preview";
     $("p-wm").textContent = ch.n; $("p-num").textContent = "Canal " + ch.num + " · " + (ch.app ? "pelo app " + ch.app : ch.c);
     $("p-nm").textContent = ch.n;
     clearTimeout(previewT);
@@ -637,5 +700,6 @@
   tick(); setInterval(tick, 15000);
 
   loadApps(enterHome);
+  loadAtalhos(function () { if (view === "home") enterHome(); });
   loadChannelList(function () { checkChannels(function () { buildCats(); if (view === "guide") fillList(lastCh); }); });
 })();

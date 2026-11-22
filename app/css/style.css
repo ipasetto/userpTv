@@ -1,4 +1,5 @@
-/* Igor TV — tela 1920x1080. Navegador da TV (Tizen 4) é antigo:
+/* Igor TV — tela 1920x1080. Sem degradês: o navegador da TV desenha degradês grandes em blocos
+   e as emendas aparecem como listras verticais. Só cores sólidas. Navegador da TV (Tizen 4) é antigo:
    sem CSS grid, sem gap em flex, sem inset, sem aspect-ratio. Tudo em rem (1rem = 1/100 da largura do palco 16:9, ajustado por JS) e flexbox. */
 @font-face{font-family:"Atkinson";src:url(../fonts/atkinson-400.woff2) format("woff2");font-weight:400}
 @font-face{font-family:"Atkinson";src:url(../fonts/atkinson-700.woff2) format("woff2");font-weight:700}
@@ -15,7 +16,7 @@
 [hidden]{display:none!important}
 html,body{margin:0;width:100vw;height:100vh;overflow:hidden;background:#0b1118;color:var(--paper);font-family:var(--text)}
 #tv{position:absolute;top:50%;left:50%;width:100rem;height:56.25rem;margin:-28.125rem 0 0 -50rem;overflow:hidden;
-  background-color:var(--ink);background-image:linear-gradient(180deg,#14202f 0%,#101823 45%,#0d141d 100%)}
+  background-color:var(--ink)}
 .view{position:absolute;top:0;left:0;right:0;bottom:0;display:flex;flex-direction:column;padding:2.8rem 4rem 2.4rem}
 .key{display:inline-flex;align-items:center;justify-content:center;min-width:1.9rem;height:1.9rem;padding:0 .5rem;border-radius:.45rem;background:var(--ink-3);color:var(--paper);font-weight:700;font-size:1rem;line-height:1;margin-right:.4rem;vertical-align:middle}
 .key svg{width:1.1rem;height:1.1rem;stroke:currentColor;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
@@ -84,7 +85,7 @@ h1.hello{margin:0;font-family:var(--display);font-weight:300;font-size:3.4rem;li
 .pill i{width:.9rem;height:.9rem;border-radius:50%;background:var(--live);margin-right:.6rem;-webkit-animation:pulse 1.6s ease-in-out infinite;animation:pulse 1.6s ease-in-out infinite}
 @-webkit-keyframes pulse{50%{opacity:.35}}
 @keyframes pulse{50%{opacity:.35}}
-.pinfo{position:absolute;left:0;right:0;bottom:0;display:flex;flex-direction:column;background:linear-gradient(rgba(0,0,0,0),rgba(0,0,0,.65));padding:4rem 2.2rem 2.2rem}
+.pinfo{position:absolute;left:0;right:0;bottom:0;display:flex;flex-direction:column;background:rgba(6,10,15,.62);padding:1.8rem 2.2rem 2rem}
 .pinfo .num{font-family:var(--display);font-weight:600;font-size:1.6rem;color:var(--amber);margin-bottom:.4rem}
 .pinfo .nm{font-family:var(--display);font-weight:600;font-size:3.4rem;line-height:1;margin-bottom:.6rem}
 .pinfo .ok{font-size:1.3rem;color:rgba(255,255,255,.85);font-weight:700}

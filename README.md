@@ -17,6 +17,11 @@ Tela inicial personalizada para a TV Samsung UN40NU7100 (2018, Tizen 4).
 
 Edite `canais.json` aqui no GitHub (cada canal: `n` nome, `c` tipo, `url` endereço `.m3u8`, `bg` cor). O app lê esse arquivo toda vez que abre, então não precisa reinstalar. Use só transmissões oficiais e gratuitas.
 
+## Como adicionar sites (apps web)
+
+Edite `atalhos.json` aqui no GitHub e acrescente, dentro de `"atalhos": [ ]`, uma linha por site:
+`{"n": "Nome do botão", "url": "https://endereço-do-site", "bg": "#1b4f8f"}` (separe com vírgula). Cada site vira um botão nos favoritos e abre no navegador da TV. O app lê o arquivo toda vez que abre.
+
 ## Estrutura
 
 - `app/`: o app Tizen (HTML, CSS, JS). Escrito para o navegador antigo do Tizen 4: sem CSS grid, sem `gap` em flex, sem spread.
