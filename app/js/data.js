@@ -39,6 +39,7 @@ var IGORTV = {
   ],
 
   /* Apps da Samsung tentados pelos botões (o primeiro que existir abre). */
-  entradas: ["org.tizen.tv-viewer", "com.samsung.tv.source", "org.tizen.source-menu"],
-  ajustesDaTV: ["com.samsung.tv.setting", "org.tizen.setting", "com.samsung.tv.settings"]
+  /* conferido na TV em 22/11/2026: o app de TV/HDMI existe; os Ajustes da Samsung não podem ser abertos por outro app */
+  entradas: ["org.tizen.tv-viewer"],
+  ajustesDaTV: []
 };

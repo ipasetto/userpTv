@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "pulsing-dot",
+        "value": "*",
+        "files": [
+          "app/index.html"
+        ],
+        "createdAt": "2026-11-22T22:33:39.848Z",
+        "reason": "Claude: o ponto pulsante fica no selo AO VIVO dos canais, que são transmissões ao vivo de verdade; é a convenção de TV para sinal ao vivo"
+      }
+    ]
+  }
+}

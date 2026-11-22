@@ -351,7 +351,7 @@
       "<li>Em “Host PC IP”, coloque <span class='ip'>" + D.ipDoPC + "</span> e aperte OK.</li>" +
       "<li>Segure o botão de energia até aparecer o logo da Samsung.</li></ol>" +
       "<p>Terminou? Repita os passos com <span class='ip'>127.0.0.1</span> para o YouTube sem anúncios voltar a funcionar.</p>",
-    tv: "<h2>Ajustes da TV</h2><p>Abre as configurações da Samsung: imagem, som, rede e atualização.</p><p>Aperte OK para abrir.</p>",
+    tv: "<h2>Ajustes da TV</h2><p>Imagem, som, rede e atualização ficam no menu da Samsung.</p><ol><li>Aperte a <b>casinha</b> do controle.</li><li>Vá até a <b>engrenagem</b> (Configurações), no canto esquerdo.</li><li>Para voltar aqui, aperte a casinha e escolha <b>Igor TV</b>.</li></ol>",
     sobre: ""
   };
   function enterSettings() {
@@ -360,7 +360,7 @@
       " apps instalados encontrados.</p><p>" + (checked ? canais.length + " canais ao vivo funcionando." : "Canais ainda não verificados.") + "</p>";
     var opts = [
       ["instalar", "Modo instalação", "Para instalar ou atualizar pelo PC"],
-      ["tv", "Ajustes da TV", "Imagem, som, rede e atualização"],
+      ["tv", "Ajustes da TV", "Como chegar no menu da Samsung"],
       ["sobre", "Sobre o Igor TV", "Versão e informações"]
     ];
     var box = $("setmenu"); box.innerHTML = "";
@@ -371,7 +371,7 @@
       b.onfocusin2 = function () { $("setpanel").innerHTML = PANELS[o[0]]; };
       box.appendChild(b); els.push(b);
     });
-    wire(els, function (el) { if (el._k === "tv") launchFirst(D.ajustesDaTV, "os ajustes da TV"); });
+    wire(els, function () {});
   }
 
   function enterHelp() { show("help"); items = []; }
