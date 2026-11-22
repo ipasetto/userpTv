@@ -19,8 +19,8 @@
 </head>
 <body>
 <div id="tv">
-  <!-- vídeo: fica fora das telas e é posicionado por JS (prévia ou tela cheia) -->
-  <object id="av" type="application/avplayer"></object>
+  <!-- vídeo: posicionado por JS (prévia ou tela cheia). O <object> do player da Samsung é criado
+       só enquanto um canal toca: parado, ele deixava listras na tela. -->
   <video id="vid" autoplay hidden></video>
 
   <!-- INÍCIO -->

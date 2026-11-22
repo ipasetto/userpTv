@@ -442,7 +442,13 @@
   /* ---------------- ASSISTINDO ---------------- */
   var AV = null;
   try { if (window.webapis && webapis.avplay) AV = webapis.avplay; } catch (e) {}
-  if (!AV) $("av").style.display = "none";   /* fora da TV (navegador do PC) o player da Samsung não existe */
+  /* O <object> do player só existe enquanto toca: parado ele fura a camada gráfica e aparecem listras. */
+  function ensureAV() {
+    if ($("av")) return;
+    var o = document.createElement("object"); o.id = "av"; o.type = "application/avplayer";
+    $("tv").insertBefore(o, $("tv").firstChild);
+  }
+  function dropAV() { var o = $("av"); if (o) o.parentNode.removeChild(o); }
   var wnum = 1, bannerT, curUrl = null, curBox = null;
   /* Mensagem de estado: na prévia ou na tela cheia, conforme onde o vídeo está. */
   function status(t) {
@@ -452,7 +458,7 @@
   }
   function stopPlayer() {
     clearTimeout(previewT);
-    if (AV) { try { AV.stop(); } catch (e) {} try { AV.close(); } catch (e) {} }
+    if (AV) { try { AV.stop(); } catch (e) {} try { AV.close(); } catch (e) {} dropAV(); }
     var v = $("vid"); v.pause(); v.removeAttribute("src"); v.hidden = true;
     curUrl = null; curBox = null;
     $("preview").className = "preview";
@@ -480,6 +486,7 @@
     status("Carregando o canal…");
     if (AV) {
       try {
+        ensureAV();
         AV.open(url);
         placeVideo(box || null);
         AV.setListener({

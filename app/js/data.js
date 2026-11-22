@@ -1,6 +1,6 @@
 /* Igor TV — dados editáveis. */
 var IGORTV = {
-  versao: "1.2.0",
+  versao: "1.2.1",
   ipDoPC: "192.168.1.53",
 
   /* App que abre no botão YouTube: o TizenBrew, que carrega o TizenTube (sem anúncios). */
