@@ -1,0 +1,5 @@
+dist/
+build/
+.cert-senha.txt
+instalacao.log
+.claude/settings.local.json
