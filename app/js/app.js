@@ -294,7 +294,7 @@ function iptvIco(img) {
     var favs = [], ids = getFavIds();
     each(installed, function (a) { if (ids.indexOf(a.id) >= 0) favs.push(present(a)); });
     each(D.atalhos || [], function (w) {
-      favs.push({ n: w.n, sub: "site", bg: solid(w.bg || "#1b4f8f"), id: "web:" + w.url, url: w.url, icons: w.icone ? [w.icone] : [] });
+      favs.push({ n: w.n, sub: "site", bg: solid(w.bg || "#1b4f8f"), id: "web:" + w.url, url: w.url, siteApp: w.app, icons: w.icone ? [w.icone] : [] });
     });
     favs.sort(function (a, b) { return a.n.localeCompare(b.n, "pt-BR"); });
     var s = shape(favs.length);
@@ -306,6 +306,8 @@ function iptvIco(img) {
     each(all, function (el, i) { if (homeKey && (el._app ? el._app.id : el._fn) === homeKey) start = i; });
     wire(all, function (el) {
       homeKey = el._app ? el._app.id : el._fn;
+      /* site com app próprio (criado pelo criar-app-site.bat): abre o app; se não estiver instalado, abre no navegador */
+      if (el._app && el._app.siteApp) { var w = el._app; return launch(w.siteApp, w.n, function () { openWeb(w.url, w.n); }); }
       if (el._app && el._app.url) return openWeb(el._app.url, el._app.n);
       if (el._app) return launch(el._app.id, el._app.n);
       if (el._fn === "TV ao vivo") return enterGuide();
@@ -359,7 +361,7 @@ function iptvIco(img) {
     each(l || [], function (s) {
       if (!s || !/^https?:\/\//.test(s.url || "")) return;
       var nome = s.n || s.p || s.nome || s.url.replace(/^https?:\/\//, "").split("/")[0];
-      out.push({ n: String(nome), url: s.url, bg: s.bg, icone: s.icone });
+      out.push({ n: String(nome), url: s.url, bg: s.bg, icone: s.icone, app: s.app });
     });
     return out;
   }

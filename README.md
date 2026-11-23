@@ -22,6 +22,10 @@ Edite `canais.json` aqui no GitHub (cada canal: `n` nome, `c` tipo, `url` endere
 Edite `atalhos.json` aqui no GitHub e acrescente, dentro de `"atalhos": [ ]`, uma linha por site:
 `{"n": "Nome do botão", "url": "https://endereço-do-site", "bg": "#1b4f8f"}` (separe com vírgula). Cada site vira um botão nos favoritos e abre no navegador da TV. O app lê o arquivo toda vez que abre.
 
+## Transformar um site em app da TV
+
+Clique em `criar-app-site.bat`, digite o nome e o endereço. Ele cria um app separado (nome e ícone próprios) que abre o site em tela cheia e instala na TV (precisa do Host PC IP = 192.168.1.53). No fim ele mostra a linha para pôr no `atalhos.json` com o campo `"app"`, para o botão do IPTV abrir esse app. Para sair do site, use a casinha do controle.
+
 ## Estrutura
 
 - `app/`: o app Tizen (HTML, CSS, JS). Escrito para o navegador antigo do Tizen 4: sem CSS grid, sem `gap` em flex, sem spread.
