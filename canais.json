@@ -1,1163 +1,249 @@
 {
-  "comoEditar": "Cada canal: n = nome, c = tipo (vira uma aba no guia), url = endereço .m3u8, bg = cor do quadro. Só transmissões oficiais e gratuitas. O app lê este arquivo toda vez que abre.",
+  "comoEditar": "Cada canal: n = nome, c = tipo (vira uma aba no guia), url = endereço .m3u8, bg = cor do quadro. Categorias normalizadas. Só transmissões oficiais e gratuitas. O app lê este arquivo toda vez que abre.",
   "canais": [
-    {
-      "n": "TV Brasil",
-      "c": "Abertos",
-      "url": "https://tvbrasil-stream.ebc.com.br/index.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "TV Cultura",
-      "c": "Abertos",
-      "url": "https://player-tvcultura.stream.uol.com.br/live/tvcultura.m3u8",
-      "bg": "#16806a"
-    },
-    {
-      "n": "Rede Minas",
-      "c": "Abertos",
-      "url": "https://8hzcavccys.zoeweb.tv/redeminas/ngrp:redeminas_all/playlist.m3u8",
-      "bg": "#b8441a"
-    },
-    {
-      "n": "CNN Brasil",
-      "c": "Notícias",
-      "url": "https://d25usgadhphvwi.cloudfront.net/hls/main.m3u8",
-      "bg": "#a01818"
-    },
-    {
-      "n": "Record News",
-      "c": "Notícias",
-      "url": "https://rnw-rn.otteravision.com/rnw/rn/rnw_rn.m3u8",
-      "bg": "#8a1a2a"
-    },
-    {
-      "n": "TV Câmara",
-      "c": "Públicos",
-      "url": "https://stream3.camara.gov.br/tv1/manifest.m3u8",
-      "bg": "#13804f"
-    },
-    {
-      "n": "Cinemax",
-      "c": "Públicos",
-      "url": "http://acaidopt.org:80/3llohwk4g9/kwf099q30o/107978.ts",
-      "bg": "#13804f"
-    },
-    {
-      "n": "Canal Educação",
-      "c": "Públicos",
-      "url": "https://canaleducacao-stream.ebc.com.br/index.m3u8",
-      "bg": "#1a7a5a"
-    },
-    {
-      "n": "Canal Gov",
-      "c": "Públicos",
-      "url": "https://canalgov-stream.ebc.com.br/index.m3u8",
-      "bg": "#2a3a8a"
-    },
-    {
-      "n": "TVE RS",
-      "c": "Públicos",
-      "url": "http://streaming.procergs.com.br:1935/tve/stve/playlist.m3u8",
-      "bg": "#1a5a6a"
-    },
-    {
-      "n": "TV UFOP",
-      "c": "Públicos",
-      "url": "https://app.tvufop.com.br/hls/tvufop.m3u8",
-      "bg": "#5a4a14"
-    },
-    {
-      "n": "UNISUL TV",
-      "c": "Públicos",
-      "url": "https://sitetv.brasilstream.com.br/hls/sitetv/index.m3u8?token=",
-      "bg": "#1b4f8f"
-    },
-    {
-      "n": "SBT News",
-      "c": "Notícias",
-      "url": "https://dai.google.com/linear/hls/event/1XSOdtQ0SH2G8OEmEfGgjQ/master.m3u8",
-      "bg": "#1a3fa8"
-    },
-    {
-      "n": "Canal UOL",
-      "c": "Notícias",
-      "url": "https://video24.mais.uol.com.br/live/6146.m3u8",
-      "bg": "#8a3a14"
-    },
-    {
-      "n": "VEJA+ TV",
-      "c": "Notícias",
-      "url": "https://gpa-vja.otteravision.com/gpa/vja/vja.m3u8",
-      "bg": "#8a1a3a"
-    },
-    {
-      "n": "Times Brasil",
-      "c": "Notícias",
-      "url": "https://ssai2-ads.api.leiniao.com/global-adinsertion-api/hls/live/v2/21fdb6dd7491406bba86497a24390a25/playlist.m3u8",
-      "bg": "#3a3a5a"
-    },
-    {
-      "n": "Globo Esporte",
-      "c": "Esportes",
-      "url": "https://amg00716-globo-amg00716c1-tcl-br-9495.playouts.now.amagi.tv/playlist.m3u8",
-      "bg": "#13804f"
-    },
-    {
-      "n": "Rede Brasil",
-      "c": "Abertos",
-      "url": "https://redebrasil.nuvemplay.live/hls/stream.m3u8",
-      "bg": "#2a3a8a"
-    },
-    {
-      "n": "Amazon Sat",
-      "c": "Abertos",
-      "url": "https://amazonsat.brasilstream.com.br/hls/amazonsat/index.m3u8",
-      "bg": "#1a7a5a"
-    },
-    {
-      "n": "Terra Viva",
-      "c": "Abertos",
-      "url": "https://9ada494d.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/TEctYnJfVXBseW5rLU5ld2NvX0hMUw/playlist.m3u8",
-      "bg": "#3a6a1a"
-    },
-    {
-      "n": "Canal Sete",
-      "c": "Abertos",
-      "url": "http://play.canalsete.com.br:1935/canalsete/xpl-c7_source/playlist.m3u8",
-      "bg": "#8a3a14"
-    },
-    {
-      "n": "TCM 10",
-      "c": "Abertos",
-      "url": "https://live.tcm10.com.br/tcm10hd/stream.m3u8",
-      "bg": "#1b4f8f"
-    },
-    {
-      "n": "TelecineFun",
-      "c": "Filme",
-      "url": "http://45.185.15.154:9080/stream/63/index.m3u8",
-      "bg": "#803613"
-     },
-    {
-      "n": "TelecinePremium",
-      "c": "Filme",
-      "url": "http://45.185.15.154:9080/cloud/stream/5a592b4d10d6423fbacc0c7d23d32cbd/28/index.m3u8",
-      "bg": "#803613"
-    },
-    {
-      "n": "Globo",
-      "c": "Aberto",
-      "url": "https://amg00716-globo-amg00716c1-tcl-br-9495.playouts.now.amagi.tv/playlist.m3u8",
-      "bg": "#8a3a14"
-    },
-    {
-      "n": "RetroCartoon",
-      "c": "Aberto",
-      "url": "https://stmv1.video.brstream.com.br/retrotv/retrotv/chunklist_w1069200121.m3u8",
-      "bg": "#8a3a14"
-    },
-    {
-      "n": "SonyMovie",
-      "c": "Filme",
-      "url": "http://170.83.16.50/SONY_MOVIES/index.m3u8",
-      "bg": "#8a3a14"
-    },
-    {
-      "n": "BandEsportes",
-      "c": "Esporte",
-      "url": "http://170.83.16.50/BAND_SPORTS/index.m3u8",
-      "bg": "#13804f"
-    },
-    {
-      "n": "A Caçadora de Relíquias",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-67e59a6557487a8b7fe73e23.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "A Feiticeira",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-631fa8dd7f25240007099a40.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Acumuladores Obsessivos",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-656e2a4b4261ca00083aa99e.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Adrenalina Pura TV",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-61b790b985706b00072cb797.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Assombrações",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-620d1512c7986a0007220213.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Avatar: A lenda de Aang",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-6759eeb1bd523200083b4f29.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Baby Shark TV",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-63da6bcd60bc8f0008a5d364.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Babyfirst",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-5f4fb4cf605ddf000748e16f.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "BET Pluto TV",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-5ff768b6a4c8b80008498610.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Beyblade",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-633dc392e0282400071b0d39.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "BM&C News (720p)",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-666c9c60a7efd40008f552f0.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Bob Esponja Calça Quadrada (720p)",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-62545c0b002f4b0007688b61.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Boruto: Naruto Next Generations",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-656f389c3944b60008e5bdab.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Caçadores de Óvnis",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-656e2a10954b020008ed167c.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "CBS News (720p)",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-62310f66d5888f0007534342.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Charmed: Jovens Bruxas",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-67f9602ee173fa5664fafae8.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Clube do Terror",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-64e501eec630a900088ed0f8.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Cocoricó",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-62d969fd8451a30007f0fd94.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Comedy Central Pluto TV",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-5f357e91b18f0b00073583d2.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Comedy Central South Park",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-609ae66b359b270007869ff1.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "CSI: Miami",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-63eb9c5351f5d000085e8d7e.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Death Note",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-625464a945b6a200079257d1.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Detetives Médicos",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-638df93ae2f2a3000737c168.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Diff’rent Strokes Arnold",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-61f1d27a189ed10007b7393e.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Estado Paranormal",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-656e2a81954b020008ed17a4.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Euronews Portuguese (720p)",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-619e6614c9d9650007a2b171.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "FailArmy",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-5f5141c1605ddf000748eb1b.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "FIFA+",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-66997e8d3a4ad20008e50be9.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Filmelier TV",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-633dcebd80386500074a2461.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Filmes Suspense",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-5f171d3442a0500007362f22.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Homeful (720p)",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-67603668f433320008760af1.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Hunter x Hunter",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-65d9167818036500080e8780.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Inspetor Bugiganga",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-69162648d03565d6c8c8df97.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Inuyasha",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-66b26681d2d50d00083abe8b.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "JoJo’s Bizarre Adventure",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-66c7982f6838ee00085f0d24.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Jornada nas Estrelas A Nova Geração",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-69162ad79505d0f3b1ebf07d.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Jornada nas Estrelas Deep Space Nine",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-69162af591700f4c4c135c95.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Jornada nas Estrelas Voyager",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-69162b1ef189e235142b17ab.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Jovem Pan NEWS (720p)",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-6317ba014d4d040007227f72.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Kenan & Kel",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-5ffcc5130fd98c0007f2e216.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "MacGyver",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-63eb9dc84e83e70008abea92.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Mais MasterChef Brasil",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-681111be5e0764e297fb200e.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "MasterChef",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-6077045b6031bd00078de127.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "MasterChef Brasil Profissionais",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-681110afc188aa63faa147e0.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Mistérios sem Solução",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-62b5c5a064163d0007b2efe6.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Moranguinho",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-63eba189c111bc0008ff59c5.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "MTV Are you the One?",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-5f6108d8cc331900075e98e4.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "MTV Biggest Pop (1080p)",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-6047fbdbbb776a0007e7f2ff.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "MTV Catfish (720p)",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-626c2a3502d84a0007cec817.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "MTV Com o Ex",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-61a528267e1b8b0007357920.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "MTV Dating",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-6851bb3426beced4f2f67ee6.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "MTV Jovens e Mães (720p)",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-620fdc7d8a36fc000710e3ba.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "MTV Pluto TV",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-5f1212fb81e85c00077ae9ef.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "MTV Reality (720p)",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-6851bdfc9ac48fde5e07f5ae.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "MTV Rocks",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-66a01e07d2d50d0008100d6a.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "MTV Rupaul's Drag Race",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-645111f1d8436e00081bb2bd.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "MTV Shore",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-625463563b8ddc0007134aeb.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Naruto",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-5f6df5a173d7340007c559f7.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Naruto Shippuden",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-64c92f965580090008084968.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "NatureTime (720p)",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-681ba2ad93d3d19bcab47433.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "NCIS",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-63eb9fdda995710008991c54.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Nick Jr. Club (720p)",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-6824ce95f09106f4b18f4114.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Nickelodeon Clássico (720p)",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-6824ce10c5d53e1351ceb8d1.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Nickelodeon iCarly",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-620ff46e0a576e0007dc2f89.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Nickelodeon Teen (720p)",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-60f5fabf0721880007cd50e3.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Nickelodeon Toons (720p)",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-645951c0e94c38000802d2cb.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Numbers",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-67f960c5441853fe50e7afc1.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "O Encantador de Cães",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-61099df8cee03b00074b2ecf.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "O Homem que veio do Céu",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-62052d3b4eeb740007fbe125.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "O Reino Infantil",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-5f5c216df68f920007888315.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Oggy e as Baratas Tontas",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-63221bafdc6e110007b50270.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "One Piece",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-624b1c8d4321e200073ee421.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Os Arquivos do FBI",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-620d12a82e8ac50007c269c3.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Os Padrinhos Mágicos",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-63221e41af69b500076f84e7.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Os Smurfs",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-68b88ae1943f6fb1fb2ad749.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pegadinhas Just for Laughs (720p)",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-67802a22a5d8215f99dcee30.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "PFL MMA (720p)",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-64f6180130ab3300083d896b.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pluto TV Aliens",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-6806d65e84f24b70109485fa.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pluto TV Animais",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-6474aa984cfc2c0008883a92.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pluto TV Anime",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-5f12136385bccc00070142ed.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pluto TV Anime Ação",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-604b79c558393100078faeef.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pluto TV Bang Bang",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-663b9dc7cb3ea10008f1a0ce.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pluto TV Canal UOL (720p)",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-64b9370b409629000802d32b.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pluto TV Cine Clássicos",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-5fa1612a669ba0000702017b.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pluto TV Cine Comédia",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-5f12101f0b12f00007844c7c.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pluto TV Cine Comédia Romântica",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-62545ed3dab4380007582f7c.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pluto TV Cine Crime",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-6479ff764f5ba5000878dfe2.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pluto TV Cine Drama",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-5f1210d14ae1f80007bafb1d.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pluto TV Cine Família",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-5f171f032cd22e0007f17f3d.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pluto TV Cine Inspiração",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-5fa991b1f09e020007e78626.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pluto TV Cine Romance",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-5f171f988ab9780007fa95ea.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pluto TV Cine Sucessos",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-5f120e94a5714d00074576a1.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pluto TV Cine Terror",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-5f12111c9e6c2c00078ef3bb.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pluto TV Cozinha",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-5f1ef23020a5ac0007e5e8ea.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pluto TV Desenhos Clássicos",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-655e5c4d2c46f3000877a54b.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pluto TV Esportes",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-5f32d2db0af67400077f29c4.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pluto TV Ficção Científica",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-5fa15ad6367e170007cdd098.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pluto TV Filmes Ação",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-5f120f41b7d403000783a6d6.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pluto TV Filmes Aventura",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-66c79a4262e5510008ff68a5.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pluto TV Filmes de Luta",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-6806d62369aec5b19cd628c0.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pluto TV Filmes Nacionais",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-5f5a545d0dbf7f0007c09408.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pluto TV História",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-5f1ef1a8cec6be00072a7ac9.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pluto TV Investigação",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-5f32cf37c9ff2b00082adbc8.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pluto TV Junior",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-5f12141b146d760007934ea7.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pluto TV Karaokê por Stingray (720p)",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-604b99d633a72b00078e05ad.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pluto TV KFOOD",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-633ee9ba83c08f00076b60a6.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pluto TV Kids",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-5f1214a637c6fd00079c652f.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pluto TV Kids Club",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-66c8cae7fed35b0008580ec0.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pluto TV Minha Obsessão Favorita",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-61843f5e491af10007f7eefa.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pluto TV Mistérios",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-5fac52f142044f00078e2a51.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pluto TV MTV Classic (720p)",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-66a01dcb8561260008b0a41d.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pluto TV Natureza",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-5f1213ba0ecebc00070e170f.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pluto TV Negócio Fechado",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-64ad7394798def00087b2bfe.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pluto TV Netmovies",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-663b9de4f999220008230fa8.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pluto TV Novelas",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-5f512365abe1f50007d3ff56.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pluto TV Paisagens por Stingray (720p)",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-604a8dedbca75b0007b1c753.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pluto TV Policial",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-678fdf9e3de7c8cf948e8824.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pluto TV Record News (720p)",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-6102e04e9ab1db0007a980a1.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pluto TV Retrô",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-5f1212ad1728050007a523b8.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pluto TV Séries Ação",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-6474ab1da51cb80008bfb5f4.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pluto TV Séries Comédia",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-655e5bc94261ca000810cb17.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pluto TV Séries Criminais",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-6474ab5cdc7a760008745008.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pluto TV Séries Drama",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-65f060d84e01740008d7421f.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pluto TV Séries Novelescas",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-691627e4a29a6123e400b3e0.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pluto TV Séries Sci-Fi",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-63d2ba2f60bc8f0008981a0e.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pluto TV Shows por Stingray (720p)",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-604b91e0692f770007d9f33f.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pluto TV Star Trek",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-5f99ac4fded33000078f29ab.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pluto TV Terror Trash",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-66aa67493a4ad2000806d91b.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pluto TV Turbo",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-6014761dfb91870008ea6463.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pluto TV Viagens",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-5f32d432d612e50007e56133.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pluto TV Vida Real",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-5f32d4d9ec194100070c7449.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pokémon",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-687007a8ee4155e89a8f6d67.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Popeye",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-677d93f37bffa600080795e7.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "PORTATV",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-69440d0611f6c6384ab78306.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Pronto-socorro: Histórias De Emergência",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-61bb72a7bf8c520007a8fd27.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "RACER Brasil (720p)",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-65a6818c7bdc8d0008457b21.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Realmadrid TV (720p)",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-63dac28760bc8f0008a7654b.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Red Bull TV BR (720p)",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-67813f3162bf016db944c9ab.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Rookie Blue",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-64ff2d8c6625510008c5a512.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Runtime",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-62c5d32e2c48f9000715b6e9.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Salon Line",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-66a7d0e0cd0d310008448610.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "SFT Combat (720p)",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-6660b636cb3ea10008429c6a.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Smithsonian Channel Pluto TV",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-6298bd10d88ef000073f16b7.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Sony One Shark Tank Brasil (720p)",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-6647c0b91050b60008390de4.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "South Park: Coleção Cartman",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-65df71008b24c80008f04281.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "South Park: Coleção Kenny",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-65df704366eec8000898e32f.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "South Park: Coleção Kyle",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-65df713dec9fda0008b7a81d.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "South Park: Coleção Stan",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-65df70b0f7f0af0008c3b316.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Super Onze",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-63988c2750108d00072e2686.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Tastemade (720p)",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-5fd1419a3b4f4b000773ba85.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Tastemade Casa (720p)",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-68b88821e542386ab0bf5bef.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Tastemade Viagem (720p)",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-68b8875777201ec428d9eaa5.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Teletubbies",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-64e50055286f6b000838c067.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "The Pet Collective (720p)",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-5f515ebac01c0f00080e8439.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "The Walking Dead by AMC (720p)",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-678aa104680721c77c506746.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "TikTok Radio Brasil (720p)",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-63dac32bda711800088a2ba3.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Times Brasil | CNBC (720p)",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-679a973a97782f0008ff4bb6.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Tokusato",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-5ff609de50ab210008025c1b.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Top Barça (720p)",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-6888ee858f4a4aa11feb9430.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Turma da Mônica (720p)",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-5f997e44949bc70007a6941e.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "TV Cultura (720p)",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-62e010e6cd663f0007e57dc8.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "UFC",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-69a20556814d27f4ae630a92.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "World Poker Tour",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-63eba66da8b2270008436b10.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Yu-Gi-Oh",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-63988a50be012600070f5db3.m3u8",
-      "bg": "#1270a8"
-    },
-    {
-      "n": "Z Nation",
-      "c": "Aberto",
-      "url": "https://jmp2.uk/plu-66b3af48d2d50d00083d6936.m3u8",
-      "bg": "#1270a8"
-    }
+    { "n": "TV Brasil", "c": "Abertos", "url": "https://tvbrasil-stream.ebc.com.br/index.m3u8", "bg": "#1270a8" },
+    { "n": "TV Cultura", "c": "Abertos", "url": "https://player-tvcultura.stream.uol.com.br/live/tvcultura.m3u8", "bg": "#1270a8" },
+    { "n": "TV Cultura (Pluto)", "c": "Abertos", "url": "https://jmp2.uk/plu-62e010e6cd663f0007e57dc8.m3u8", "bg": "#1270a8" },
+    { "n": "Rede Minas", "c": "Abertos", "url": "https://8hzcavccys.zoeweb.tv/redeminas/ngrp:redeminas_all/playlist.m3u8", "bg": "#1270a8" },
+    { "n": "SBT", "c": "Abertos", "url": "https://aovivo.maissbt.com/channel.m3u8", "bg": "#1270a8" },
+    { "n": "Record", "c": "Abertos", "url": "https://cdn.jmvstream.com/w/LVW-10842/LVW10842_513N26MDBL/chunklist.m3u8", "bg": "#1270a8" },
+    { "n": "Band (RBATV PA)", "c": "Abertos", "url": "https://5cf4a2c2512a2.streamlock.net/rbatv/rbatv/playlist.m3u8", "bg": "#1270a8" },
+    { "n": "RedeTV!", "c": "Abertos", "url": "http://45.162.64.114/REDE_TV/index.m3u8", "bg": "#1270a8" },
+    { "n": "CNT", "c": "Abertos", "url": "http://45.162.64.114/CNT/index.m3u8", "bg": "#1270a8" },
+    { "n": "Globo (FAST)", "c": "Abertos", "url": "https://amg00716-globo-amg00716c1-tcl-br-9495.playouts.now.amagi.tv/playlist.m3u8", "bg": "#1270a8" },
+    { "n": "Rede Brasil", "c": "Abertos", "url": "https://redebrasil.nuvemplay.live/hls/stream.m3u8", "bg": "#1270a8" },
+    { "n": "Amazon Sat", "c": "Abertos", "url": "https://amazonsat.brasilstream.com.br/hls/amazonsat/index.m3u8", "bg": "#1270a8" },
+    { "n": "Canal Sete", "c": "Abertos", "url": "http://play.canalsete.com.br:1935/canalsete/xpl-c7_source/playlist.m3u8", "bg": "#1270a8" },
+    { "n": "TCM 10", "c": "Abertos", "url": "https://live.tcm10.com.br/tcm10hd/stream.m3u8", "bg": "#1270a8" },
+    { "n": "TV A Crítica", "c": "Abertos", "url": "https://cdn.live.br1.jmvstream.com/w/LVW-20715/LVW20715_50E3x2MCm2/playlist.m3u8", "bg": "#1270a8" },
+    { "n": "TBC TV", "c": "Abertos", "url": "https://tbc.zoeweb.tv/tbc/tbc/playlist.m3u8", "bg": "#1270a8" },
+    { "n": "Play TV", "c": "Abertos", "url": "http://45.162.64.114/PLAY_TV/index.m3u8", "bg": "#1270a8" },
+    { "n": "TV Transamérica", "c": "Abertos", "url": "http://tvtransamerica.crossdigital.com.br:1935/ponto2/transamerica2/playlist.m3u8", "bg": "#1270a8" },
+    { "n": "TV Pampa", "c": "Abertos", "url": "https://59f1cbe63db89.streamlock.net:1443/tvpampa/definst/tvpampa/chunklist_w820678324.m3u8", "bg": "#1270a8" },
+    { "n": "MBC Brasil TV", "c": "Abertos", "url": "https://play.mbcbrasil.tv.br/playlist.m3u8", "bg": "#1270a8" },
+    { "n": "Conexão TV", "c": "Abertos", "url": "https://5a57bda70564a.streamlock.net/conexaotv/conexaotv.sdp/playlist.m3u8", "bg": "#1270a8" },
+    { "n": "Cinturão Verde", "c": "Abertos", "url": "https://play.redecinturaoverde.com.br/playlist.m3u8", "bg": "#1270a8" },
+    { "n": "TV Clube (PE)", "c": "Abertos", "url": "https://5c483b9d1019c.streamlock.net/8186/8186/playlist.m3u8", "bg": "#1270a8" },
+    { "n": "TV Passo Fundo", "c": "Abertos", "url": "https://5a57bda70564a.streamlock.net/tvpasso/tvpasso.sdp/playlist.m3u8", "bg": "#1270a8" },
+    { "n": "TV Sul de Minas", "c": "Abertos", "url": "https://5cf4a2c2512a2.streamlock.net/tvsuldeminas/tvsuldeminas/playlist.m3u8", "bg": "#1270a8" },
+    { "n": "TV Mais Maricá", "c": "Abertos", "url": "https://5cf4a2c2512a2.streamlock.net/tvmaismarica/tvmaismarica/playlist.m3u8", "bg": "#1270a8" },
+    { "n": "Nova Era TV", "c": "Abertos", "url": "http://wz3.dnip.com.br:1935/novaeratv/novaeratv.sdp/live.m3u8", "bg": "#1270a8" },
+    { "n": "TV Viçosa", "c": "Abertos", "url": "http://wz4.dnip.com.br/fratevitv/fratevitv.sdp/playlist.m3u8", "bg": "#1270a8" },
+    { "n": "Chroma TV", "c": "Abertos", "url": "https://5c483b9d1019c.streamlock.net/8054/8054/playlist.m3u8", "bg": "#1270a8" },
+    { "n": "TV Pantanal MS", "c": "Abertos", "url": "https://5a2b083e9f360.streamlock.net/tvpantanal/tvpantanal.sdp/playlist.m3u8", "bg": "#1270a8" },
+    { "n": "TV Comunitária DF", "c": "Abertos", "url": "https://5b7f3c45ab7c2.streamlock.net/8008/smil:8008.smil/playlist.m3u8?DVR=", "bg": "#1270a8" },
+    { "n": "Despertar TV", "c": "Abertos", "url": "https://cdn.live.br1.jmvstream.com/webtv/pejexypz/playlist/playlist.m3u8", "bg": "#1270a8" },
+
+    { "n": "CNN Brasil", "c": "Notícias", "url": "https://d25usgadhphvwi.cloudfront.net/hls/main.m3u8", "bg": "#a01818" },
+    { "n": "Record News", "c": "Notícias", "url": "https://rnw-rn.otteravision.com/rnw/rn/rnw_rn.m3u8", "bg": "#a01818" },
+    { "n": "Record News (painel)", "c": "Notícias", "url": "http://45.162.64.114/RECORD_NEWS/index.m3u8", "bg": "#a01818" },
+    { "n": "Band News", "c": "Notícias", "url": "http://45.162.64.114/BAND_NEWS/index.m3u8", "bg": "#a01818" },
+    { "n": "SBT News", "c": "Notícias", "url": "https://dai.google.com/linear/hls/event/1XSOdtQ0SH2G8OEmEfGgjQ/master.m3u8", "bg": "#a01818" },
+    { "n": "Canal UOL", "c": "Notícias", "url": "https://video24.mais.uol.com.br/live/6146.m3u8", "bg": "#a01818" },
+    { "n": "VEJA+ TV", "c": "Notícias", "url": "https://gpa-vja.otteravision.com/gpa/vja/vja.m3u8", "bg": "#a01818" },
+    { "n": "Times Brasil", "c": "Notícias", "url": "https://ssai2-ads.api.leiniao.com/global-adinsertion-api/hls/live/v2/21fdb6dd7491406bba86497a24390a25/playlist.m3u8", "bg": "#a01818" },
+    { "n": "Times Brasil | CNBC (Pluto)", "c": "Notícias", "url": "https://jmp2.uk/plu-679a973a97782f0008ff4bb6.m3u8", "bg": "#a01818" },
+    { "n": "BM&C News (Pluto)", "c": "Notícias", "url": "https://jmp2.uk/plu-666c9c60a7efd40008f552f0.m3u8", "bg": "#a01818" },
+    { "n": "Jovem Pan News (Pluto)", "c": "Notícias", "url": "https://jmp2.uk/plu-6317ba014d4d040007227f72.m3u8", "bg": "#a01818" },
+    { "n": "Pluto TV Canal UOL", "c": "Notícias", "url": "https://jmp2.uk/plu-64b9370b409629000802d32b.m3u8", "bg": "#a01818" },
+    { "n": "Pluto TV Record News", "c": "Notícias", "url": "https://jmp2.uk/plu-6102e04e9ab1db0007a980a1.m3u8", "bg": "#a01818" },
+    { "n": "CBS News (Pluto)", "c": "Notícias", "url": "https://jmp2.uk/plu-62310f66d5888f0007534342.m3u8", "bg": "#a01818" },
+    { "n": "Euronews Português (Pluto)", "c": "Notícias", "url": "https://jmp2.uk/plu-619e6614c9d9650007a2b171.m3u8", "bg": "#a01818" },
+    { "n": "Fala Litoral", "c": "Notícias", "url": "https://5c483b9d1019c.streamlock.net/falalitoraltv/falalitoraltv/playlist.m3u8", "bg": "#a01818" },
+    { "n": "TV Sim Cachoeiro", "c": "Notícias", "url": "https://5cf4a2c2512a2.streamlock.net/8104/8104/playlist.m3u8", "bg": "#a01818" },
+    { "n": "TV Sim São Mateus", "c": "Notícias", "url": "https://5cf4a2c2512a2.streamlock.net/8236/8236/playlist.m3u8", "bg": "#a01818" },
+
+    { "n": "TV Câmara", "c": "Públicos", "url": "https://stream3.camara.gov.br/tv1/manifest.m3u8", "bg": "#2a3a8a" },
+    { "n": "Canal Gov", "c": "Públicos", "url": "https://canalgov-stream.ebc.com.br/index.m3u8", "bg": "#2a3a8a" },
+    { "n": "Canal Educação", "c": "Públicos", "url": "https://canaleducacao-stream.ebc.com.br/index.m3u8", "bg": "#2a3a8a" },
+    { "n": "Canal Educação (painel)", "c": "Públicos", "url": "http://45.162.64.114/CANAL_EDUCACAO/index.m3u8", "bg": "#2a3a8a" },
+    { "n": "TV Justiça", "c": "Públicos", "url": "http://45.190.28.50/TV_JUSTICA/index.m3u8", "bg": "#2a3a8a" },
+    { "n": "Canal Futura", "c": "Públicos", "url": "http://45.162.64.114/FUTURA/index.m3u8", "bg": "#2a3a8a" },
+    { "n": "TVE RS", "c": "Públicos", "url": "http://streaming.procergs.com.br:1935/tve/stve/playlist.m3u8", "bg": "#2a3a8a" },
+    { "n": "TV UFOP", "c": "Públicos", "url": "https://app.tvufop.com.br/hls/tvufop.m3u8", "bg": "#2a3a8a" },
+    { "n": "TV UFG", "c": "Públicos", "url": "http://flash.softhost.com.br:1935/ufg/tvufgweb/playlist.m3u8", "bg": "#2a3a8a" },
+    { "n": "UNISUL TV", "c": "Públicos", "url": "https://sitetv.brasilstream.com.br/hls/sitetv/index.m3u8?token=", "bg": "#2a3a8a" },
+
+    { "n": "ge Fast (Globo)", "c": "Esportes", "url": "https://amg00716-globo-amg00716c1-tcl-br-9495.playouts.now.amagi.tv/playlist.m3u8", "bg": "#13804f" },
+    { "n": "ESPN", "c": "Esportes", "url": "http://45.162.64.114/ESPN_BRASIL/index.m3u8", "bg": "#13804f" },
+    { "n": "ESPN 4", "c": "Esportes", "url": "http://45.162.64.114/ESPN_4/index.m3u8", "bg": "#13804f" },
+    { "n": "BandSports", "c": "Esportes", "url": "http://45.162.64.114/BAND_SPORTS/index.m3u8", "bg": "#13804f" },
+    { "n": "N Sports", "c": "Esportes", "url": "https://ogc-nsprt-tcl-roku-syndication.otteravision.com/ogc/nsprt/nsprt_720p.m3u8", "bg": "#13804f" },
+    { "n": "FIFA+", "c": "Esportes", "url": "https://jmp2.uk/plu-66997e8d3a4ad20008e50be9.m3u8", "bg": "#13804f" },
+    { "n": "UFC", "c": "Esportes", "url": "https://jmp2.uk/plu-69a20556814d27f4ae630a92.m3u8", "bg": "#13804f" },
+    { "n": "PFL MMA", "c": "Esportes", "url": "https://jmp2.uk/plu-64f6180130ab3300083d896b.m3u8", "bg": "#13804f" },
+    { "n": "SFT Combat", "c": "Esportes", "url": "https://jmp2.uk/plu-6660b636cb3ea10008429c6a.m3u8", "bg": "#13804f" },
+    { "n": "Realmadrid TV", "c": "Esportes", "url": "https://jmp2.uk/plu-63dac28760bc8f0008a7654b.m3u8", "bg": "#13804f" },
+    { "n": "Top Barça", "c": "Esportes", "url": "https://jmp2.uk/plu-6888ee858f4a4aa11feb9430.m3u8", "bg": "#13804f" },
+    { "n": "Red Bull TV", "c": "Esportes", "url": "https://jmp2.uk/plu-67813f3162bf016db944c9ab.m3u8", "bg": "#13804f" },
+    { "n": "RACER Brasil", "c": "Esportes", "url": "https://jmp2.uk/plu-65a6818c7bdc8d0008457b21.m3u8", "bg": "#13804f" },
+    { "n": "World Poker Tour", "c": "Esportes", "url": "https://jmp2.uk/plu-63eba66da8b2270008436b10.m3u8", "bg": "#13804f" },
+    { "n": "Pluto TV Esportes", "c": "Esportes", "url": "https://jmp2.uk/plu-5f32d2db0af67400077f29c4.m3u8", "bg": "#13804f" },
+    { "n": "Pluto TV Turbo", "c": "Esportes", "url": "https://jmp2.uk/plu-6014761dfb91870008ea6463.m3u8", "bg": "#13804f" },
+
+    { "n": "Telecine Fun", "c": "Filmes e Séries", "url": "http://45.185.15.154:9080/stream/63/index.m3u8", "bg": "#803613" },
+    { "n": "Telecine Premium", "c": "Filmes e Séries", "url": "http://45.185.15.154:9080/cloud/stream/5a592b4d10d6423fbacc0c7d23d32cbd/28/index.m3u8", "bg": "#803613" },
+    { "n": "Sony Movies", "c": "Filmes e Séries", "url": "http://170.83.16.50/SONY_MOVIES/index.m3u8", "bg": "#803613" },
+    { "n": "Filmelier TV", "c": "Filmes e Séries", "url": "https://jmp2.uk/plu-633dcebd80386500074a2461.m3u8", "bg": "#803613" },
+    { "n": "A Caçadora de Relíquias", "c": "Filmes e Séries", "url": "https://jmp2.uk/plu-67e59a6557487a8b7fe73e23.m3u8", "bg": "#803613" },
+    { "n": "A Feiticeira", "c": "Filmes e Séries", "url": "https://jmp2.uk/plu-631fa8dd7f25240007099a40.m3u8", "bg": "#803613" },
+    { "n": "Assombrações", "c": "Filmes e Séries", "url": "https://jmp2.uk/plu-620d1512c7986a0007220213.m3u8", "bg": "#803613" },
+    { "n": "Charmed: Jovens Bruxas", "c": "Filmes e Séries", "url": "https://jmp2.uk/plu-67f9602ee173fa5664fafae8.m3u8", "bg": "#803613" },
+    { "n": "Clube do Terror", "c": "Filmes e Séries", "url": "https://jmp2.uk/plu-64e501eec630a900088ed0f8.m3u8", "bg": "#803613" },
+    { "n": "CSI: Miami", "c": "Filmes e Séries", "url": "https://jmp2.uk/plu-63eb9c5351f5d000085e8d7e.m3u8", "bg": "#803613" },
+    { "n": "Detetives Médicos", "c": "Filmes e Séries", "url": "https://jmp2.uk/plu-638df93ae2f2a3000737c168.m3u8", "bg": "#803613" },
+    { "n": "Diff'rent Strokes", "c": "Filmes e Séries", "url": "https://jmp2.uk/plu-61f1d27a189ed10007b7393e.m3u8", "bg": "#803613" },
+    { "n": "Jornada nas Estrelas: A Nova Geração", "c": "Filmes e Séries", "url": "https://jmp2.uk/plu-69162ad79505d0f3b1ebf07d.m3u8", "bg": "#803613" },
+    { "n": "Jornada nas Estrelas: Deep Space Nine", "c": "Filmes e Séries", "url": "https://jmp2.uk/plu-69162af591700f4c4c135c95.m3u8", "bg": "#803613" },
+    { "n": "Jornada nas Estrelas: Voyager", "c": "Filmes e Séries", "url": "https://jmp2.uk/plu-69162b1ef189e235142b17ab.m3u8", "bg": "#803613" },
+    { "n": "Pluto TV Star Trek", "c": "Filmes e Séries", "url": "https://jmp2.uk/plu-5f99ac4fded33000078f29ab.m3u8", "bg": "#803613" },
+    { "n": "MacGyver", "c": "Filmes e Séries", "url": "https://jmp2.uk/plu-63eb9dc84e83e70008abea92.m3u8", "bg": "#803613" },
+    { "n": "NCIS", "c": "Filmes e Séries", "url": "https://jmp2.uk/plu-63eb9fdda995710008991c54.m3u8", "bg": "#803613" },
+    { "n": "Numbers", "c": "Filmes e Séries", "url": "https://jmp2.uk/plu-67f960c5441853fe50e7afc1.m3u8", "bg": "#803613" },
+    { "n": "Os Arquivos do FBI", "c": "Filmes e Séries", "url": "https://jmp2.uk/plu-620d12a82e8ac50007c269c3.m3u8", "bg": "#803613" },
+    { "n": "Rookie Blue", "c": "Filmes e Séries", "url": "https://jmp2.uk/plu-64ff2d8c6625510008c5a512.m3u8", "bg": "#803613" },
+    { "n": "Z Nation", "c": "Filmes e Séries", "url": "https://jmp2.uk/plu-66b3af48d2d50d00083d6936.m3u8", "bg": "#803613" },
+    { "n": "The Walking Dead by AMC", "c": "Filmes e Séries", "url": "https://jmp2.uk/plu-678aa104680721c77c506746.m3u8", "bg": "#803613" },
+    { "n": "South Park: Coleção Cartman", "c": "Filmes e Séries", "url": "https://jmp2.uk/plu-65df71008b24c80008f04281.m3u8", "bg": "#803613" },
+    { "n": "South Park: Coleção Kenny", "c": "Filmes e Séries", "url": "https://jmp2.uk/plu-65df704366eec8000898e32f.m3u8", "bg": "#803613" },
+    { "n": "South Park: Coleção Kyle", "c": "Filmes e Séries", "url": "https://jmp2.uk/plu-65df713dec9fda0008b7a81d.m3u8", "bg": "#803613" },
+    { "n": "South Park: Coleção Stan", "c": "Filmes e Séries", "url": "https://jmp2.uk/plu-65df70b0f7f0af0008c3b316.m3u8", "bg": "#803613" },
+    { "n": "Pluto TV Cine Clássicos", "c": "Filmes e Séries", "url": "https://jmp2.uk/plu-5fa1612a669ba0000702017b.m3u8", "bg": "#803613" },
+    { "n": "Pluto TV Cine Comédia", "c": "Filmes e Séries", "url": "https://jmp2.uk/plu-5f12101f0b12f00007844c7c.m3u8", "bg": "#803613" },
+    { "n": "Pluto TV Cine Comédia Romântica", "c": "Filmes e Séries", "url": "https://jmp2.uk/plu-62545ed3dab4380007582f7c.m3u8", "bg": "#803613" },
+    { "n": "Pluto TV Cine Crime", "c": "Filmes e Séries", "url": "https://jmp2.uk/plu-6479ff764f5ba5000878dfe2.m3u8", "bg": "#803613" },
+    { "n": "Pluto TV Cine Drama", "c": "Filmes e Séries", "url": "https://jmp2.uk/plu-5f1210d14ae1f80007bafb1d.m3u8", "bg": "#803613" },
+    { "n": "Pluto TV Cine Família", "c": "Filmes e Séries", "url": "https://jmp2.uk/plu-5f171f032cd22e0007f17f3d.m3u8", "bg": "#803613" },
+    { "n": "Pluto TV Cine Inspiração", "c": "Filmes e Séries", "url": "https://jmp2.uk/plu-5fa991b1f09e020007e78626.m3u8", "bg": "#803613" },
+    { "n": "Pluto TV Cine Romance", "c": "Filmes e Séries", "url": "https://jmp2.uk/plu-5f171f988ab9780007fa95ea.m3u8", "bg": "#803613" },
+    { "n": "Pluto TV Cine Sucessos", "c": "Filmes e Séries", "url": "https://jmp2.uk/plu-5f120e94a5714d00074576a1.m3u8", "bg": "#803613" },
+    { "n": "Pluto TV Cine Terror", "c": "Filmes e Séries", "url": "https://jmp2.uk/plu-5f12111c9e6c2c00078ef3bb.m3u8", "bg": "#803613" },
+    { "n": "Pluto TV Terror Trash", "c": "Filmes e Séries", "url": "https://jmp2.uk/plu-66aa67493a4ad2000806d91b.m3u8", "bg": "#803613" },
+    { "n": "Pluto TV Filmes Ação", "c": "Filmes e Séries", "url": "https://jmp2.uk/plu-5f120f41b7d403000783a6d6.m3u8", "bg": "#803613" },
+    { "n": "Pluto TV Filmes Aventura", "c": "Filmes e Séries", "url": "https://jmp2.uk/plu-66c79a4262e5510008ff68a5.m3u8", "bg": "#803613" },
+    { "n": "Pluto TV Filmes de Luta", "c": "Filmes e Séries", "url": "https://jmp2.uk/plu-6806d62369aec5b19cd628c0.m3u8", "bg": "#803613" },
+    { "n": "Pluto TV Filmes Nacionais", "c": "Filmes e Séries", "url": "https://jmp2.uk/plu-5f5a545d0dbf7f0007c09408.m3u8", "bg": "#803613" },
+    { "n": "Pluto TV Filmes Suspense", "c": "Filmes e Séries", "url": "https://jmp2.uk/plu-5f171d3442a0500007362f22.m3u8", "bg": "#803613" },
+    { "n": "Pluto TV Bang Bang", "c": "Filmes e Séries", "url": "https://jmp2.uk/plu-663b9dc7cb3ea10008f1a0ce.m3u8", "bg": "#803613" },
+    { "n": "Pluto TV Netmovies", "c": "Filmes e Séries", "url": "https://jmp2.uk/plu-663b9de4f999220008230fa8.m3u8", "bg": "#803613" },
+    { "n": "Pluto TV Ficção Científica", "c": "Filmes e Séries", "url": "https://jmp2.uk/plu-5fa15ad6367e170007cdd098.m3u8", "bg": "#803613" },
+    { "n": "Pluto TV Policial", "c": "Filmes e Séries", "url": "https://jmp2.uk/plu-678fdf9e3de7c8cf948e8824.m3u8", "bg": "#803613" },
+    { "n": "Pluto TV Novelas", "c": "Filmes e Séries", "url": "https://jmp2.uk/plu-5f512365abe1f50007d3ff56.m3u8", "bg": "#803613" },
+    { "n": "Pluto TV Séries Ação", "c": "Filmes e Séries", "url": "https://jmp2.uk/plu-6474ab1da51cb80008bfb5f4.m3u8", "bg": "#803613" },
+    { "n": "Pluto TV Séries Comédia", "c": "Filmes e Séries", "url": "https://jmp2.uk/plu-655e5bc94261ca000810cb17.m3u8", "bg": "#803613" },
+    { "n": "Pluto TV Séries Criminais", "c": "Filmes e Séries", "url": "https://jmp2.uk/plu-6474ab5cdc7a760008745008.m3u8", "bg": "#803613" },
+    { "n": "Pluto TV Séries Drama", "c": "Filmes e Séries", "url": "https://jmp2.uk/plu-65f060d84e01740008d7421f.m3u8", "bg": "#803613" },
+    { "n": "Pluto TV Séries Novelescas", "c": "Filmes e Séries", "url": "https://jmp2.uk/plu-691627e4a29a6123e400b3e0.m3u8", "bg": "#803613" },
+    { "n": "Pluto TV Séries Sci-Fi", "c": "Filmes e Séries", "url": "https://jmp2.uk/plu-63d2ba2f60bc8f0008981a0e.m3u8", "bg": "#803613" },
+    { "n": "Pluto TV Retrô", "c": "Filmes e Séries", "url": "https://jmp2.uk/plu-5f1212ad1728050007a523b8.m3u8", "bg": "#803613" },
+
+    { "n": "RetroCartoon", "c": "Infantis", "url": "https://stmv1.video.brstream.com.br/retrotv/retrotv/chunklist_w1069200121.m3u8", "bg": "#c46a10" },
+    { "n": "Avatar: A Lenda de Aang", "c": "Infantis", "url": "https://jmp2.uk/plu-6759eeb1bd523200083b4f29.m3u8", "bg": "#c46a10" },
+    { "n": "Baby Shark TV", "c": "Infantis", "url": "https://jmp2.uk/plu-63da6bcd60bc8f0008a5d364.m3u8", "bg": "#c46a10" },
+    { "n": "Babyfirst", "c": "Infantis", "url": "https://jmp2.uk/plu-5f4fb4cf605ddf000748e16f.m3u8", "bg": "#c46a10" },
+    { "n": "Beyblade", "c": "Infantis", "url": "https://jmp2.uk/plu-633dc392e0282400071b0d39.m3u8", "bg": "#c46a10" },
+    { "n": "Bob Esponja Calça Quadrada", "c": "Infantis", "url": "https://jmp2.uk/plu-62545c0b002f4b0007688b61.m3u8", "bg": "#c46a10" },
+    { "n": "Boruto: Naruto Next Generations", "c": "Infantis", "url": "https://jmp2.uk/plu-656f389c3944b60008e5bdab.m3u8", "bg": "#c46a10" },
+    { "n": "Cocoricó", "c": "Infantis", "url": "https://jmp2.uk/plu-62d969fd8451a30007f0fd94.m3u8", "bg": "#c46a10" },
+    { "n": "Death Note", "c": "Infantis", "url": "https://jmp2.uk/plu-625464a945b6a200079257d1.m3u8", "bg": "#c46a10" },
+    { "n": "Hunter x Hunter", "c": "Infantis", "url": "https://jmp2.uk/plu-65d9167818036500080e8780.m3u8", "bg": "#c46a10" },
+    { "n": "Inspetor Bugiganga", "c": "Infantis", "url": "https://jmp2.uk/plu-69162648d03565d6c8c8df97.m3u8", "bg": "#c46a10" },
+    { "n": "Inuyasha", "c": "Infantis", "url": "https://jmp2.uk/plu-66b26681d2d50d00083abe8b.m3u8", "bg": "#c46a10" },
+    { "n": "JoJo's Bizarre Adventure", "c": "Infantis", "url": "https://jmp2.uk/plu-66c7982f6838ee00085f0d24.m3u8", "bg": "#c46a10" },
+    { "n": "Kenan & Kel", "c": "Infantis", "url": "https://jmp2.uk/plu-5ffcc5130fd98c0007f2e216.m3u8", "bg": "#c46a10" },
+    { "n": "Moranguinho", "c": "Infantis", "url": "https://jmp2.uk/plu-63eba189c111bc0008ff59c5.m3u8", "bg": "#c46a10" },
+    { "n": "Naruto", "c": "Infantis", "url": "https://jmp2.uk/plu-5f6df5a173d7340007c559f7.m3u8", "bg": "#c46a10" },
+    { "n": "Naruto Shippuden", "c": "Infantis", "url": "https://jmp2.uk/plu-64c92f965580090008084968.m3u8", "bg": "#c46a10" },
+    { "n": "Nick Jr. Club", "c": "Infantis", "url": "https://jmp2.uk/plu-6824ce95f09106f4b18f4114.m3u8", "bg": "#c46a10" },
+    { "n": "Nickelodeon Clássico", "c": "Infantis", "url": "https://jmp2.uk/plu-6824ce10c5d53e1351ceb8d1.m3u8", "bg": "#c46a10" },
+    { "n": "Nickelodeon iCarly", "c": "Infantis", "url": "https://jmp2.uk/plu-620ff46e0a576e0007dc2f89.m3u8", "bg": "#c46a10" },
+    { "n": "Nickelodeon Teen", "c": "Infantis", "url": "https://jmp2.uk/plu-60f5fabf0721880007cd50e3.m3u8", "bg": "#c46a10" },
+    { "n": "Nickelodeon Toons", "c": "Infantis", "url": "https://jmp2.uk/plu-645951c0e94c38000802d2cb.m3u8", "bg": "#c46a10" },
+    { "n": "O Reino Infantil", "c": "Infantis", "url": "https://jmp2.uk/plu-5f5c216df68f920007888315.m3u8", "bg": "#c46a10" },
+    { "n": "Oggy e as Baratas Tontas", "c": "Infantis", "url": "https://jmp2.uk/plu-63221bafdc6e110007b50270.m3u8", "bg": "#c46a10" },
+    { "n": "One Piece", "c": "Infantis", "url": "https://jmp2.uk/plu-624b1c8d4321e200073ee421.m3u8", "bg": "#c46a10" },
+    { "n": "Os Padrinhos Mágicos", "c": "Infantis", "url": "https://jmp2.uk/plu-63221e41af69b500076f84e7.m3u8", "bg": "#c46a10" },
+    { "n": "Os Smurfs", "c": "Infantis", "url": "https://jmp2.uk/plu-68b88ae1943f6fb1fb2ad749.m3u8", "bg": "#c46a10" },
+    { "n": "Pokémon", "c": "Infantis", "url": "https://jmp2.uk/plu-687007a8ee4155e89a8f6d67.m3u8", "bg": "#c46a10" },
+    { "n": "Popeye", "c": "Infantis", "url": "https://jmp2.uk/plu-677d93f37bffa600080795e7.m3u8", "bg": "#c46a10" },
+    { "n": "Super Onze", "c": "Infantis", "url": "https://jmp2.uk/plu-63988c2750108d00072e2686.m3u8", "bg": "#c46a10" },
+    { "n": "Teletubbies", "c": "Infantis", "url": "https://jmp2.uk/plu-64e50055286f6b000838c067.m3u8", "bg": "#c46a10" },
+    { "n": "Tokusato", "c": "Infantis", "url": "https://jmp2.uk/plu-5ff609de50ab210008025c1b.m3u8", "bg": "#c46a10" },
+    { "n": "Turma da Mônica", "c": "Infantis", "url": "https://jmp2.uk/plu-5f997e44949bc70007a6941e.m3u8", "bg": "#c46a10" },
+    { "n": "Yu-Gi-Oh", "c": "Infantis", "url": "https://jmp2.uk/plu-63988a50be012600070f5db3.m3u8", "bg": "#c46a10" },
+    { "n": "Pluto TV Anime", "c": "Infantis", "url": "https://jmp2.uk/plu-5f12136385bccc00070142ed.m3u8", "bg": "#c46a10" },
+    { "n": "Pluto TV Anime Ação", "c": "Infantis", "url": "https://jmp2.uk/plu-604b79c558393100078faeef.m3u8", "bg": "#c46a10" },
+    { "n": "Pluto TV Desenhos Clássicos", "c": "Infantis", "url": "https://jmp2.uk/plu-655e5c4d2c46f3000877a54b.m3u8", "bg": "#c46a10" },
+    { "n": "Pluto TV Junior", "c": "Infantis", "url": "https://jmp2.uk/plu-5f12141b146d760007934ea7.m3u8", "bg": "#c46a10" },
+    { "n": "Pluto TV Kids", "c": "Infantis", "url": "https://jmp2.uk/plu-5f1214a637c6fd00079c652f.m3u8", "bg": "#c46a10" },
+    { "n": "Pluto TV Kids Club", "c": "Infantis", "url": "https://jmp2.uk/plu-66c8cae7fed35b0008580ec0.m3u8", "bg": "#c46a10" },
+    { "n": "Zoomoo Kids", "c": "Infantis", "url": "http://45.162.64.114/ZOOMOO_KIDS/index.m3u8", "bg": "#c46a10" },
+
+    { "n": "Fonte TV", "c": "Religiosos", "url": "https://59fb88a1b1108.streamlock.net/fonte/_definst_/fontetv/chunklist_w1224511652.m3u8", "bg": "#6a2a8a" },
+    { "n": "TV Terceiro Anjo", "c": "Religiosos", "url": "https://streamer1.streamhost.org/salive/GMI3anjoh/playlist.m3u8", "bg": "#6a2a8a" },
+    { "n": "Novo Tempo", "c": "Religiosos", "url": "http://45.162.64.114/NOVO_TEMPO/index.m3u8", "bg": "#6a2a8a" },
+    { "n": "O Homem que veio do Céu", "c": "Religiosos", "url": "https://jmp2.uk/plu-62052d3b4eeb740007fbe125.m3u8", "bg": "#6a2a8a" },
+
+    { "n": "Arte 1", "c": "Cultura e Documentários", "url": "http://45.162.64.114/ARTE1/index.m3u8", "bg": "#1a7a5a" },
+    { "n": "AgroCanal", "c": "Cultura e Documentários", "url": "http://45.162.64.114/AGRO_CANAL/index.m3u8", "bg": "#1a7a5a" },
+    { "n": "AgroMais", "c": "Cultura e Documentários", "url": "http://45.162.64.114/AGROMAIS/index.m3u8", "bg": "#1a7a5a" },
+    { "n": "Canal do Boi", "c": "Cultura e Documentários", "url": "http://45.162.64.114/CANAL_DO_BOI/index.m3u8", "bg": "#1a7a5a" },
+    { "n": "Fish TV", "c": "Cultura e Documentários", "url": "http://45.162.64.114/FISH_TV/index.m3u8", "bg": "#1a7a5a" },
+    { "n": "Terra Viva", "c": "Cultura e Documentários", "url": "https://9ada494d.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/TEctYnJfVXBseW5rLU5ld2NvX0hMUw/playlist.m3u8", "bg": "#1a7a5a" },
+    { "n": "Caçadores de Óvnis", "c": "Cultura e Documentários", "url": "https://jmp2.uk/plu-656e2a10954b020008ed167c.m3u8", "bg": "#1a7a5a" },
+    { "n": "Estado Paranormal", "c": "Cultura e Documentários", "url": "https://jmp2.uk/plu-656e2a81954b020008ed17a4.m3u8", "bg": "#1a7a5a" },
+    { "n": "Mistérios sem Solução", "c": "Cultura e Documentários", "url": "https://jmp2.uk/plu-62b5c5a064163d0007b2efe6.m3u8", "bg": "#1a7a5a" },
+    { "n": "NatureTime", "c": "Cultura e Documentários", "url": "https://jmp2.uk/plu-681ba2ad93d3d19bcab47433.m3u8", "bg": "#1a7a5a" },
+    { "n": "O Encantador de Cães", "c": "Cultura e Documentários", "url": "https://jmp2.uk/plu-61099df8cee03b00074b2ecf.m3u8", "bg": "#1a7a5a" },
+    { "n": "Pronto-socorro: Histórias de Emergência", "c": "Cultura e Documentários", "url": "https://jmp2.uk/plu-61bb72a7bf8c520007a8fd27.m3u8", "bg": "#1a7a5a" },
+    { "n": "Smithsonian Channel (Pluto)", "c": "Cultura e Documentários", "url": "https://jmp2.uk/plu-6298bd10d88ef000073f16b7.m3u8", "bg": "#1a7a5a" },
+    { "n": "Pluto TV Aliens", "c": "Cultura e Documentários", "url": "https://jmp2.uk/plu-6806d65e84f24b70109485fa.m3u8", "bg": "#1a7a5a" },
+    { "n": "Pluto TV Animais", "c": "Cultura e Documentários", "url": "https://jmp2.uk/plu-6474aa984cfc2c0008883a92.m3u8", "bg": "#1a7a5a" },
+    { "n": "Pluto TV História", "c": "Cultura e Documentários", "url": "https://jmp2.uk/plu-5f1ef1a8cec6be00072a7ac9.m3u8", "bg": "#1a7a5a" },
+    { "n": "Pluto TV Investigação", "c": "Cultura e Documentários", "url": "https://jmp2.uk/plu-5f32cf37c9ff2b00082adbc8.m3u8", "bg": "#1a7a5a" },
+    { "n": "Pluto TV Mistérios", "c": "Cultura e Documentários", "url": "https://jmp2.uk/plu-5fac52f142044f00078e2a51.m3u8", "bg": "#1a7a5a" },
+    { "n": "Pluto TV Natureza", "c": "Cultura e Documentários", "url": "https://jmp2.uk/plu-5f1213ba0ecebc00070e170f.m3u8", "bg": "#1a7a5a" },
+    { "n": "Pluto TV Viagens", "c": "Cultura e Documentários", "url": "https://jmp2.uk/plu-5f32d432d612e50007e56133.m3u8", "bg": "#1a7a5a" },
+    { "n": "Tastemade Viagem", "c": "Cultura e Documentários", "url": "https://jmp2.uk/plu-68b8875777201ec428d9eaa5.m3u8", "bg": "#1a7a5a" },
+
+    { "n": "MTV Biggest Pop", "c": "Música", "url": "https://jmp2.uk/plu-6047fbdbbb776a0007e7f2ff.m3u8", "bg": "#7a2a6a" },
+    { "n": "MTV Rocks", "c": "Música", "url": "https://jmp2.uk/plu-66a01e07d2d50d0008100d6a.m3u8", "bg": "#7a2a6a" },
+    { "n": "Pluto TV MTV Classic", "c": "Música", "url": "https://jmp2.uk/plu-66a01dcb8561260008b0a41d.m3u8", "bg": "#7a2a6a" },
+    { "n": "Pluto TV Karaokê por Stingray", "c": "Música", "url": "https://jmp2.uk/plu-604b99d633a72b00078e05ad.m3u8", "bg": "#7a2a6a" },
+    { "n": "Pluto TV Paisagens por Stingray", "c": "Música", "url": "https://jmp2.uk/plu-604a8dedbca75b0007b1c753.m3u8", "bg": "#7a2a6a" },
+    { "n": "Pluto TV Shows por Stingray", "c": "Música", "url": "https://jmp2.uk/plu-604b91e0692f770007d9f33f.m3u8", "bg": "#7a2a6a" },
+    { "n": "TikTok Radio Brasil", "c": "Música", "url": "https://jmp2.uk/plu-63dac32bda711800088a2ba3.m3u8", "bg": "#7a2a6a" },
+
+    { "n": "Acumuladores Obsessivos", "c": "Variedades", "url": "https://jmp2.uk/plu-656e2a4b4261ca00083aa99e.m3u8", "bg": "#5a4a14" },
+    { "n": "BET Pluto TV", "c": "Variedades", "url": "https://jmp2.uk/plu-5ff768b6a4c8b80008498610.m3u8", "bg": "#5a4a14" },
+    { "n": "Comedy Central Pluto TV", "c": "Variedades", "url": "https://jmp2.uk/plu-5f357e91b18f0b00073583d2.m3u8", "bg": "#5a4a14" },
+    { "n": "Comedy Central South Park", "c": "Variedades", "url": "https://jmp2.uk/plu-609ae66b359b270007869ff1.m3u8", "bg": "#5a4a14" },
+    { "n": "FailArmy", "c": "Variedades", "url": "https://jmp2.uk/plu-5f5141c1605ddf000748eb1b.m3u8", "bg": "#5a4a14" },
+    { "n": "Homeful", "c": "Variedades", "url": "https://jmp2.uk/plu-67603668f433320008760af1.m3u8", "bg": "#5a4a14" },
+    { "n": "MasterChef", "c": "Variedades", "url": "https://jmp2.uk/plu-6077045b6031bd00078de127.m3u8", "bg": "#5a4a14" },
+    { "n": "Mais MasterChef Brasil", "c": "Variedades", "url": "https://jmp2.uk/plu-681111be5e0764e297fb200e.m3u8", "bg": "#5a4a14" },
+    { "n": "MasterChef Brasil Profissionais", "c": "Variedades", "url": "https://jmp2.uk/plu-681110afc188aa63faa147e0.m3u8", "bg": "#5a4a14" },
+    { "n": "MTV Are you the One?", "c": "Variedades", "url": "https://jmp2.uk/plu-5f6108d8cc331900075e98e4.m3u8", "bg": "#5a4a14" },
+    { "n": "MTV Catfish", "c": "Variedades", "url": "https://jmp2.uk/plu-626c2a3502d84a0007cec817.m3u8", "bg": "#5a4a14" },
+    { "n": "MTV Com o Ex", "c": "Variedades", "url": "https://jmp2.uk/plu-61a528267e1b8b0007357920.m3u8", "bg": "#5a4a14" },
+    { "n": "MTV Dating", "c": "Variedades", "url": "https://jmp2.uk/plu-6851bb3426beced4f2f67ee6.m3u8", "bg": "#5a4a14" },
+    { "n": "MTV Jovens e Mães", "c": "Variedades", "url": "https://jmp2.uk/plu-620fdc7d8a36fc000710e3ba.m3u8", "bg": "#5a4a14" },
+    { "n": "MTV Pluto TV", "c": "Variedades", "url": "https://jmp2.uk/plu-5f1212fb81e85c00077ae9ef.m3u8", "bg": "#5a4a14" },
+    { "n": "MTV Reality", "c": "Variedades", "url": "https://jmp2.uk/plu-6851bdfc9ac48fde5e07f5ae.m3u8", "bg": "#5a4a14" },
+    { "n": "MTV RuPaul's Drag Race", "c": "Variedades", "url": "https://jmp2.uk/plu-645111f1d8436e00081bb2bd.m3u8", "bg": "#5a4a14" },
+    { "n": "MTV Shore", "c": "Variedades", "url": "https://jmp2.uk/plu-625463563b8ddc0007134aeb.m3u8", "bg": "#5a4a14" },
+    { "n": "Pegadinhas Just for Laughs", "c": "Variedades", "url": "https://jmp2.uk/plu-67802a22a5d8215f99dcee30.m3u8", "bg": "#5a4a14" },
+    { "n": "Pluto TV Cozinha", "c": "Variedades", "url": "https://jmp2.uk/plu-5f1ef23020a5ac0007e5e8ea.m3u8", "bg": "#5a4a14" },
+    { "n": "Pluto TV KFOOD", "c": "Variedades", "url": "https://jmp2.uk/plu-633ee9ba83c08f00076b60a6.m3u8", "bg": "#5a4a14" },
+    { "n": "Pluto TV Minha Obsessão Favorita", "c": "Variedades", "url": "https://jmp2.uk/plu-61843f5e491af10007f7eefa.m3u8", "bg": "#5a4a14" },
+    { "n": "Pluto TV Negócio Fechado", "c": "Variedades", "url": "https://jmp2.uk/plu-64ad7394798def00087b2bfe.m3u8", "bg": "#5a4a14" },
+    { "n": "Pluto TV Vida Real", "c": "Variedades", "url": "https://jmp2.uk/plu-5f32d4d9ec194100070c7449.m3u8", "bg": "#5a4a14" },
+    { "n": "PORTATV", "c": "Variedades", "url": "https://jmp2.uk/plu-69440d0611f6c6384ab78306.m3u8", "bg": "#5a4a14" },
+    { "n": "Runtime", "c": "Variedades", "url": "https://jmp2.uk/plu-62c5d32e2c48f9000715b6e9.m3u8", "bg": "#5a4a14" },
+    { "n": "Salon Line", "c": "Variedades", "url": "https://jmp2.uk/plu-66a7d0e0cd0d310008448610.m3u8", "bg": "#5a4a14" },
+    { "n": "Sony One Shark Tank Brasil", "c": "Variedades", "url": "https://jmp2.uk/plu-6647c0b91050b60008390de4.m3u8", "bg": "#5a4a14" },
+    { "n": "Tastemade", "c": "Variedades", "url": "https://jmp2.uk/plu-5fd1419a3b4f4b000773ba85.m3u8", "bg": "#5a4a14" },
+    { "n": "Tastemade Casa", "c": "Variedades", "url": "https://jmp2.uk/plu-68b88821e542386ab0bf5bef.m3u8", "bg": "#5a4a14" },
+    { "n": "The Pet Collective", "c": "Variedades", "url": "https://jmp2.uk/plu-5f515ebac01c0f00080e8439.m3u8", "bg": "#5a4a14" }
   ]
 }
