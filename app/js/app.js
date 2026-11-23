@@ -115,10 +115,9 @@ function iptvIco(img) {
     });
     return found;
   }
-  /* Ícones do app: primeiro o "de painel" (o mesmo da barra da casinha), depois o que o app informa. */
+  /* Ícone que o app informa à TV. (A pasta de ícones da barra da Samsung é bloqueada para outros apps: testado na TV.) */
   function iconsOf(a) {
     var l = [];
-    if (NA_TV) l.push("/opt/share/webappservice/apps_icon/Panel/" + a.id + "/250x250.png");
     if (a.iconPath) l.push(a.iconPath);
     return l;
   }
@@ -136,7 +135,10 @@ function iptvIco(img) {
     if (a.id !== D.youtubeSemAnuncios && low(a.name) === "youtube")
       return { n: "YouTube original", sub: "com anúncios", bg: "#5a1818", id: a.id, icons: a.icons };
     var def = matchDef(a);
-    if (def) return { n: def.n, bg: def.bg, fg: def.fg, sub: def.sub, id: a.id, icons: a.icons };
+    if (def) {
+      var ic = def.icone === false ? [] : (typeof def.icone === "string" ? [def.icone] : a.icons);
+      return { n: def.n, bg: def.bg, fg: def.fg, sub: def.sub, id: a.id, icons: ic };
+    }
     var c = PALETA[hash(a.id) % PALETA.length];
     return { n: a.name, bg: c, id: a.id, icons: a.icons };
   }
@@ -353,26 +355,34 @@ function iptvIco(img) {
   }
   /* Atalhos de sites: mesmo esquema dos canais (GitHub, depois última lista boa, depois a do app). */
   var ATALHOS_KEY = "iptv.atalhos";
-  function validSites(l) {
-    if (!l || typeof l.length !== "number") return false;
-    for (var i = 0; i < l.length; i++) if (!l[i] || !l[i].n || !/^https?:\/\//.test(l[i].url || "")) return false;
-    return true;
+  function validSites(l) { return !!l && typeof l.length === "number"; }
+  /* Tolerante a erro de digitação: aceita n, p ou nome; sem nome usa o endereço; pula só a linha sem endereço válido. */
+  function cleanSites(l) {
+    var out = [];
+    each(l || [], function (s) {
+      if (!s || !/^https?:\/\//.test(s.url || "")) return;
+      var nome = s.n || s.p || s.nome || s.url.replace(/^https?:\/\//, "").split("/")[0];
+      out.push({ n: String(nome), url: s.url, bg: s.bg, icone: s.icone });
+    });
+    return out;
   }
   function loadAtalhos(cb) {
     function cached() { try { var c = JSON.parse(localStorage.getItem(ATALHOS_KEY)); if (validSites(c)) D.atalhos = c; } catch (e) {} cb(); }
     if (!D.atalhosURL) return cb();
     var x = new XMLHttpRequest(), done = false;
-    x.open("GET", D.atalhosURL + "?t=" + Date.now(), true); x.timeout = 6000;
+    x.open("GET", D.atalhosURL + "?t=" + Date.now(), true); x.timeout = 20000;
     x.onload = function () {
       if (done) return; done = true;
       try {
-        var l = JSON.parse(x.responseText).atalhos;
+        var l = cleanSites(JSON.parse(x.responseText).atalhos);
+        rlog("atalhos: status " + x.status + ", itens " + l.length);
         if (x.status === 200 && validSites(l)) { D.atalhos = l; try { localStorage.setItem(ATALHOS_KEY, JSON.stringify(l)); } catch (e) {} return cb(); }
-      } catch (e) {}
+      } catch (e) { rlog("atalhos: erro ao ler (" + e.message + "), status " + x.status); }
       cached();
     };
-    x.onerror = x.ontimeout = function () { if (done) return; done = true; cached(); };
-    try { x.send(); } catch (e) { done = true; cached(); }
+    x.onerror = function () { rlog("atalhos: erro de conexão"); if (done) return; done = true; cached(); };
+    x.ontimeout = function () { rlog("atalhos: tempo esgotado"); if (done) return; done = true; cached(); };
+    try { x.send(); } catch (e) { rlog("atalhos: falha ao enviar (" + e.message + ")"); done = true; cached(); }
   }
   function openWeb(url, nome) {
     if (!NA_TV) { toast("Abrindo " + nome + "…"); return; }
@@ -384,12 +394,19 @@ function iptvIco(img) {
       });
     } catch (e) { toast("Não consegui abrir " + nome + "."); }
   }
+  /* Registro das leituras do GitHub (para diagnóstico na TV): window.iptvLog e localStorage "iptv.log". */
+  window.iptvLog = [];
+  function rlog(msg) {
+    var linha = new Date().toTimeString().slice(0, 8) + " " + msg;
+    window.iptvLog.push(linha);
+    try { var l = JSON.parse(localStorage.getItem("iptv.log") || "[]"); l.push(linha); localStorage.setItem("iptv.log", JSON.stringify(l.slice(-30))); } catch (e) {}
+  }
   function loadChannelList(cb) {
     var done = false;
     function fin(list, fonte) {
       if (done) return; done = true;
       if (validList(list)) { D.canais = list; D.fonteCanais = fonte; }
-      else {
+      else if (D.fonteCanais !== "GitHub") {   /* uma falha depois de um sucesso não desfaz o sucesso */
         try { var c = JSON.parse(localStorage.getItem(CANAIS_KEY)); if (validList(c)) { D.canais = c; D.fonteCanais = "guardada"; } } catch (e) {}
         if (!D.fonteCanais) D.fonteCanais = "do app";
       }
@@ -397,16 +414,18 @@ function iptvIco(img) {
     }
     if (!D.canaisURL) return fin(null);
     var x = new XMLHttpRequest();
-    x.open("GET", D.canaisURL + "?t=" + Date.now(), true); x.timeout = 6000;
+    x.open("GET", D.canaisURL + "?t=" + Date.now(), true); x.timeout = 20000;
     x.onload = function () {
       try {
         var l = JSON.parse(x.responseText).canais;
+        rlog("canais: status " + x.status + ", itens " + (l && l.length));
         if (x.status === 200 && validList(l)) { try { localStorage.setItem(CANAIS_KEY, JSON.stringify(l)); } catch (e) {} return fin(l, "GitHub"); }
-      } catch (e) {}
+      } catch (e) { rlog("canais: erro ao ler (" + e.message + "), status " + x.status); }
       fin(null);
     };
-    x.onerror = x.ontimeout = function () { fin(null); };
-    try { x.send(); } catch (e) { fin(null); }
+    x.onerror = function () { rlog("canais: erro de conexão"); fin(null); };
+    x.ontimeout = function () { rlog("canais: tempo esgotado"); fin(null); };
+    try { x.send(); } catch (e) { rlog("canais: falha ao enviar (" + e.message + ")"); fin(null); }
   }
   function checkChannels(cb) {
     var pend = D.canais.length, ok = [];
@@ -625,7 +644,7 @@ function iptvIco(img) {
   var ultimaVersao = null;
   function checkUpdate(cb) {
     var x = new XMLHttpRequest();
-    x.open("GET", "https://api.github.com/repos/" + D.repo + "/releases/latest", true); x.timeout = 6000;
+    x.open("GET", "https://api.github.com/repos/" + D.repo + "/releases/latest", true); x.timeout = 20000;
     x.onload = function () { try { ultimaVersao = String(JSON.parse(x.responseText).tag_name || "").replace(/^v/, ""); } catch (e) {} cb(); };
     x.onerror = x.ontimeout = function () { cb(); };
     try { x.send(); } catch (e) { cb(); }
@@ -748,6 +767,7 @@ function iptvIco(img) {
     if (view === "watch") { tune(wnum, 1); return; }
     if (view === "guide" && items[cur] && items[cur].onfocusin2) items[cur].onfocusin2();
     loadApps(function () { if (view === "home") enterHome(); });
+    refreshRemote(false);
   });
 
   /* ---------------- relógio ---------------- */
@@ -761,6 +781,20 @@ function iptvIco(img) {
   tick(); setInterval(tick, 15000);
 
   loadApps(enterHome);
-  loadAtalhos(function () { if (view === "home") enterHome(); });
-  loadChannelList(function () { checkChannels(function () { buildCats(); if (view === "guide") fillList(lastCh); }); });
+  /* Listas do GitHub: lê ao abrir, tenta de novo depois (a internet da TV pode demorar a ficar pronta ao ligar)
+     e relê sempre que o app volta para a frente. Só redesenha se algo mudou. */
+  function refreshRemote(primeira) {
+    var antesSites = JSON.stringify(D.atalhos || []), antesCanais = JSON.stringify(D.canais || []);
+    loadAtalhos(function () {
+      if ((primeira || JSON.stringify(D.atalhos || []) !== antesSites) && view === "home") enterHome();
+    });
+    loadChannelList(function () {
+      if (!primeira && JSON.stringify(D.canais || []) === antesCanais) return;
+      checked = false;
+      checkChannels(function () { buildCats(); if (view === "guide") fillList(lastCh); });
+    });
+  }
+  refreshRemote(true);
+  setTimeout(function () { refreshRemote(false); }, 10000);
+  setTimeout(function () { refreshRemote(false); }, 45000);
 })();
