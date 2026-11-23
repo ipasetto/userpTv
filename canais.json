@@ -42,6 +42,96 @@
       "c": "Públicos",
       "url": "http://acaidopt.org:80/3llohwk4g9/kwf099q30o/107978.ts",
       "bg": "#13804f"
+    },
+    {
+      "n": "Canal Educação",
+      "c": "Públicos",
+      "url": "https://canaleducacao-stream.ebc.com.br/index.m3u8",
+      "bg": "#1a7a5a"
+    },
+    {
+      "n": "Canal Gov",
+      "c": "Públicos",
+      "url": "https://canalgov-stream.ebc.com.br/index.m3u8",
+      "bg": "#2a3a8a"
+    },
+    {
+      "n": "TVE RS",
+      "c": "Públicos",
+      "url": "http://streaming.procergs.com.br:1935/tve/stve/playlist.m3u8",
+      "bg": "#1a5a6a"
+    },
+    {
+      "n": "TV UFOP",
+      "c": "Públicos",
+      "url": "https://app.tvufop.com.br/hls/tvufop.m3u8",
+      "bg": "#5a4a14"
+    },
+    {
+      "n": "UNISUL TV",
+      "c": "Públicos",
+      "url": "https://sitetv.brasilstream.com.br/hls/sitetv/index.m3u8?token=",
+      "bg": "#1b4f8f"
+    },
+    {
+      "n": "SBT News",
+      "c": "Notícias",
+      "url": "https://dai.google.com/linear/hls/event/1XSOdtQ0SH2G8OEmEfGgjQ/master.m3u8",
+      "bg": "#1a3fa8"
+    },
+    {
+      "n": "Canal UOL",
+      "c": "Notícias",
+      "url": "https://video24.mais.uol.com.br/live/6146.m3u8",
+      "bg": "#8a3a14"
+    },
+    {
+      "n": "VEJA+ TV",
+      "c": "Notícias",
+      "url": "https://gpa-vja.otteravision.com/gpa/vja/vja.m3u8",
+      "bg": "#8a1a3a"
+    },
+    {
+      "n": "Times Brasil",
+      "c": "Notícias",
+      "url": "https://ssai2-ads.api.leiniao.com/global-adinsertion-api/hls/live/v2/21fdb6dd7491406bba86497a24390a25/playlist.m3u8",
+      "bg": "#3a3a5a"
+    },
+    {
+      "n": "ge Fast",
+      "c": "Esportes",
+      "url": "https://amg00716-globo-amg00716c1-tcl-br-9495.playouts.now.amagi.tv/playlist.m3u8",
+      "bg": "#13804f"
+    },
+    {
+      "n": "Rede Brasil",
+      "c": "Abertos",
+      "url": "https://redebrasil.nuvemplay.live/hls/stream.m3u8",
+      "bg": "#2a3a8a"
+    },
+    {
+      "n": "Amazon Sat",
+      "c": "Abertos",
+      "url": "https://amazonsat.brasilstream.com.br/hls/amazonsat/index.m3u8",
+      "bg": "#1a7a5a"
+    },
+    {
+      "n": "Terra Viva",
+      "c": "Abertos",
+      "url": "https://9ada494d.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/TEctYnJfVXBseW5rLU5ld2NvX0hMUw/playlist.m3u8",
+      "bg": "#3a6a1a"
+    },
+    {
+      "n": "Canal Sete",
+      "c": "Abertos",
+      "url": "http://play.canalsete.com.br:1935/canalsete/xpl-c7_source/playlist.m3u8",
+      "bg": "#8a3a14"
+    },
+    {
+      "n": "TCM 10",
+      "c": "Abertos",
+      "url": "https://live.tcm10.com.br/tcm10hd/stream.m3u8",
+      "bg": "#1b4f8f"
     }
   ]
 }
