@@ -125,15 +125,12 @@ function iptvIco(img) {
   function solid(bg) { var m = String(bg || "").match(/#[0-9a-fA-F]{3,6}/g); return m ? m[m.length - 1] : "#22314a"; }
   function present(a) {
     var p = present0(a);
-    if (a.id === D.youtubeSemAnuncios) {   /* YouTube sem anúncios abre o TizenBrew, mas mostra o ícone do YouTube */
-      each(installed, function (b) { if (b.id !== a.id && low(b.name) === "youtube") p.icons = b.icons; });
-    }
     p.bg = solid(p.bg);
     return p;
   }
   function present0(a) {
     if (a.id !== D.youtubeSemAnuncios && low(a.name) === "youtube")
-      return { n: "YouTube original", sub: "com anúncios", bg: "#5a1818", id: a.id, icons: a.icons };
+      return { n: "YouTube original", sub: "com anúncios", bg: "#5a1818", id: a.id, icons: [] };
     var def = matchDef(a);
     if (def) {
       var ic = def.icone === false ? [] : (typeof def.icone === "string" ? [def.icone] : a.icons);

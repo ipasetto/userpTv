@@ -1,6 +1,6 @@
 /* IPTV — dados editáveis. */
 var USERPTV = {
-  versao: "2.0.2",
+  versao: "2.0.3",
   ipDoPC: "192.168.1.53",
 
   /* App que abre no botão YouTube: o TizenBrew, que carrega o TizenTube (sem anúncios). */
@@ -11,7 +11,7 @@ var USERPTV = {
   /* Em cada favorito, "icone" troca o ícone: false = sem ícone (só o nome); "https://..." = imagem própria. */
   favoritos: [
     { n: "Netflix",      match: ["netflix"],               bg: "#1c1414", fg: "#ff3b45" },
-    { n: "YouTube",      match: ["__youtube__"],           bg: "#c4161c", sub: "sem anúncios" },
+    { n: "YouTube",      match: ["__youtube__"],           bg: "#c4161c", sub: "sem anúncios", icone: false },
     { n: "Prime Video",  match: ["prime video", "amazon"], bg: "#1b5e8f", icone: false },
     { n: "Globoplay",    match: ["globoplay"],             bg: "#a8460c" },
     { n: "Disney+",      match: ["disney"],                bg: "#1a3fa8" },
@@ -25,7 +25,7 @@ var USERPTV = {
     { n: "Deezer",       match: ["deezer"],                bg: "#6a2ab0" },
     { n: "Twitch",       match: ["twitch"],                bg: "#6b3fc4" },
     { n: "Telecine",     match: ["telecine"],              bg: "#a3123a" },
-    { n: "Samsung TV Plus", match: ["samsung tv plus"],    bg: "#1a5ab0" }
+    { n: "Samsung TV Plus", match: ["samsung tv plus"],    bg: "#1a5ab0", icone: false }
   ],
 
   /* Atualização pelo botão das Configurações: o serviço do TizenBrew Installer baixa a última versão
