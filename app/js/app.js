@@ -426,13 +426,22 @@ function iptvIco(img) {
     x.ontimeout = function () { rlog("canais: tempo esgotado"); fin(null); };
     try { x.send(); } catch (e) { rlog("canais: falha ao enviar (" + e.message + ")"); fin(null); }
   }
-  /* Monta o guia com TODOS os canais da lista, sem testar se estão no ar (pedido do dono, 23/11/2026).
-     Canal que não abrir mostra "Este canal não abriu agora" na tela cheia. */
   function checkChannels(cb) {
-    end();
+    var pend = D.canais.length, ok = [];
+    each(D.canais, function (ch, i) {
+      var done = false;
+      function fin(good) { if (done) return; done = true; if (good) ok.push(i); if (--pend === 0) end(); }
+      var x = new XMLHttpRequest();
+      x.open("GET", ch.url, true); x.timeout = 7000;
+      x.onload = function () { fin(x.status === 200 && x.responseText.indexOf("#EXTM3U") >= 0); };
+      x.onerror = function () { fin(!NA_TV); }; x.ontimeout = function () { fin(false); };
+      try { x.send(); } catch (e) { fin(!NA_TV); }
+    });
     function end() {
+      ok.sort(function (a, b) { return a - b; });
       canais = [];
-      each(D.canais, function (c) {
+      each(ok, function (i) {
+        var c = D.canais[i];
         canais.push({ n: c.n, c: c.c, url: c.url, bg: c.bg, num: canais.length + 1 });
       });
       /* canais que abrem pelo app oficial da emissora (Globo, SBT...) vêm depois, numerados em sequência */
@@ -505,7 +514,7 @@ function iptvIco(img) {
     show("guide");
     if (!checked) {
       /* a verificação já começou ao abrir o app; quando terminar, ela preenche esta lista */
-      $("list").innerHTML = '<p class="empty">Carregando a lista de canais…</p>'; items = [];
+      $("list").innerHTML = '<p class="empty">Verificando os canais…</p>'; items = [];
       return;
     }
     fillList(focusNum || lastCh);
@@ -692,7 +701,7 @@ function iptvIco(img) {
   function enterSettings() {
     show("settings");
     PANELS.sobre = "<h2>Sobre o IPTV</h2><p>Versão " + D.versao + "</p><p>" + installed.length +
-      " apps instalados encontrados.</p><p>" + (checked ? canais.length + " canais na lista." : "Lista de canais ainda carregando.") + "</p><p>Lista de canais: " + (D.fonteCanais || "do app") + ".</p>";
+      " apps instalados encontrados.</p><p>" + (checked ? canais.length + " canais ao vivo funcionando." : "Canais ainda não verificados.") + "</p><p>Lista de canais: " + (D.fonteCanais || "do app") + ".</p>";
     var opts = [
       ["atualizar", "Atualizar o IPTV", "Baixa a versão nova do GitHub"],
       ["instalar", "Modo instalação", "Para instalar ou atualizar pelo PC"],
