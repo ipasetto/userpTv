@@ -1,6 +1,6 @@
 /* IPTV — dados editáveis. */
 var USERPTV = {
-  versao: "2.0.4",
+  versao: "2.0.5",
   ipDoPC: "192.168.1.53",
 
   /* App que abre no botão YouTube: o TizenBrew, que carrega o TizenTube (sem anúncios). */
